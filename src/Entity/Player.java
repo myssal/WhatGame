@@ -36,14 +36,14 @@ public class Player extends Entity{
         
         try {
             
-            up1 = ImageIO.read(getClass().getResourceAsStream("Player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("Player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("Player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("Player/boy_down_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("Player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("Player/boy_right_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("Player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("Player/boy_left_2.png"));
+            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_up_1.png"));
+            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_up_2.png"));
+            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_down_1.png"));
+            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_down_2.png"));
+            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_right_2.png"));
+            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_left_1.png"));
+            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Player/boy_left_2.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,23 +51,27 @@ public class Player extends Entity{
     }
 
     public void update(){
+        
+        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
 
-        if(keyH.upPressed){
-            direction = "up";
-            y -= speed;
+            if(keyH.upPressed){
+                direction = "up";
+                y -= speed;
+            }
+            else if (keyH.downPressed) {
+                direction = "down";
+                y += speed;
+            }
+            else if (keyH.leftPressed){
+                direction = "left";
+                x -= speed;
+            }
+            else if (keyH.rightPressed){
+                direction = "right";
+                x += speed;
+            }
         }
-        else if (keyH.downPressed) {
-            direction = "down";
-            y += speed;
-        }
-        else if (keyH.leftPressed){
-            direction = "left";
-            x -= speed;
-        }
-        else if (keyH.rightPressed){
-            direction = "right";
-            x += speed;
-        }
+        
     }
     public void draw(Graphics2D graph2){
 
