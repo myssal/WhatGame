@@ -18,8 +18,10 @@ public class TileManager {
     public  TileManager(GamePanel gp){
 
         this.gp = gp;
-        tile = new Tile[10];
+
+        tile = new Tile[50];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+
         getTileImage();
         loadMap("maps/worldMap.txt");
     }
@@ -43,8 +45,8 @@ public class TileManager {
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall.png"));
 
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/water.png"));
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/water.png"));
 
         }catch (IOException e){
             e.printStackTrace();
@@ -99,18 +101,20 @@ public class TileManager {
             int screenX = worldX - gp.player.worldX + gp.player.screenX ;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
+
             //limit which tiles to render
-            if(worldX + gp.tileSize * 2 > gp.player.worldX - gp.player.screenX &&
-                worldX - gp.tileSize * 2 < gp.player.worldX + gp.player.screenX &&
-                worldY + gp.tileSize * 2 > gp.player.worldY - gp.player.screenY &&
-                worldY - gp.tileSize * 2 < gp.player.worldY + gp.player.screenY){
+            if(worldX + gp.tileSize + 1 > gp.player.worldX - gp.player.screenX &&
+                worldX - gp.tileSize - 1 < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.tileSize + 1 > gp.player.worldY - gp.player.screenY &&
+                worldY - gp.tileSize - 1 < gp.player.worldY + gp.player.screenY){
 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
             }
 
             worldCol++;
 
-            if (worldCol == gp.maxScreenCol){
+            if (worldCol == gp.maxWorldCol){
                 worldCol = 0;
                 worldRow++;
             }

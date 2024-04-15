@@ -22,16 +22,16 @@ public class Player extends Entity{
 
         this.gp = gp;
         this.keyH = keyH;
-        screenX = gp.screenWidth/2 - (gp.tileSize/2);
-        screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
         setDefaultValue();
         getPlayerImage();
     }
     //set default Player position
     public void setDefaultValue(){
 
-        worldX = gp.tileSize*10;
-        worldY = gp.tileSize*10;
+        worldX = gp.tileSize*23;
+        worldY = gp.tileSize*21;
         speed = 10;
         direction = "down";
     }
