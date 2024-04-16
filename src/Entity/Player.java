@@ -1,6 +1,6 @@
 package Entity;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +24,15 @@ public class Player extends Entity{
         this.keyH = keyH;
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
+        //setting the collision area
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.height = 32;
+        solidArea.width = 32;
+
+
         setDefaultValue();
         getPlayerImage();
     }
@@ -59,20 +68,50 @@ public class Player extends Entity{
 
             if(keyH.upPressed){
                 direction = "up";
-                worldY -= speed;
+
             }
             else if (keyH.downPressed) {
                 direction = "down";
-                worldY += speed;
+
             }
             else if (keyH.leftPressed){
                 direction = "left";
-                worldX -= speed;
+
             }
             else if (keyH.rightPressed){
                 direction = "right";
-                worldX += speed;
+
             }
+
+            //collision check
+            collisonOn = false;
+            gp.collisionChecker.checkTile(this); //collision checker for entity, in this case player
+
+
+            //if false, player can move
+            if(collisonOn == false){
+
+                switch (direction){
+                    case"up":{
+                        worldY -= speed;
+                        break;
+                    }
+                    case"down":{
+                        worldY += speed;
+                        break;
+                    }
+                    case"right":{
+                        worldX += speed;
+                        break;
+                    }
+                    case"left":{
+                        worldX -= speed;
+                        break;
+                    }
+                }
+
+            }
+
             spriteCounter++;
             if (spriteCounter>10) {
                 if (spriteNum == 1) {
