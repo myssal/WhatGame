@@ -15,5 +15,6 @@ public class Entity {
     public int spriteCounter = 0; //variable to create a "loop" animation
     public int spriteNum = 1; //decide which sprite to use in "loop" animation
     public Rectangle solidArea; //create collision area for entity
+    public int solidAreaDefaultX, solidAreaDefaultY; //store default collision area coordinates
     public boolean collisonOn = false;
 }

@@ -13,5 +13,6 @@ public class Obj_Key extends SuperObject{
         }catch (IOException e){
             e.printStackTrace();
         };
+        collision = true;
     }
 }

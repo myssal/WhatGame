@@ -7,8 +7,10 @@
   Member list:
   ```
   
-  Cao Trung Hieu 
+  Cao Trung Hieu
+  
   Vu Ngoc Tien Minh
+  
   Nguyen Van Hau
 
   ```
