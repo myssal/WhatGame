@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public SuperObject obj[] = new SuperObject[10]; //create an object arrays to store the object that'll appear in game
     public AssetsManagement aManagement = new AssetsManagement(this);
+    public UI ui = new UI(this);
     //set default position
 
 
@@ -126,6 +127,9 @@ public class GamePanel extends JPanel implements Runnable{
 
         //player
         player.draw(graph2);
+
+        //ui
+        ui.draw(graph2);
 
         graph2.dispose();
     }
