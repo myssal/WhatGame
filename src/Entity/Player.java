@@ -44,7 +44,7 @@ public class Player extends Entity{
 
         worldX = gp.tileSize*23;
         worldY = gp.tileSize*21;
-        speed = 10;
+        speed = 5;
         direction = "down";
     }
     public void getPlayerImage(){
@@ -142,14 +142,19 @@ public class Player extends Entity{
 
             switch (objectName){
                 case "Key":
+                    gp.playSoundEffect(1);
                     hasKey++;
                     gp.obj[index] = null;
                     break;
                 case "Door":
                     if(hasKey > 0){
-                        gp.obj[i] = null;
+                        gp.obj[index] = null;
                         hasKey--;
                     }
+                    break;
+                case "Boost":
+                    speed += 4;
+                    gp.obj[index] = null;
                     break;
             }
         }

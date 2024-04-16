@@ -32,6 +32,8 @@ public class GamePanel extends JPanel implements Runnable{
     final public int screenHeight  = tileSize * maxScreenRow;
     KeyHandler keyH = new KeyHandler();
     TileManager tileM = new TileManager(this);
+    Sound music = new Sound();
+    Sound soundEffect = new Sound();
     Thread gameThread;    
     public Player player = new Player(this,keyH);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -53,6 +55,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void setUpGame(){
         //set up object in the map
         aManagement.setObject();
+
+        playMusic(0);
 
     }
 
@@ -124,5 +128,22 @@ public class GamePanel extends JPanel implements Runnable{
         player.draw(graph2);
 
         graph2.dispose();
+    }
+
+    public void playMusic(int i){
+
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+
+    public void stopMusic(){
+        music.stop();
+    }
+
+    public void playSoundEffect(int i){
+
+        soundEffect.setFile(i);
+        soundEffect.play();
     }
 }

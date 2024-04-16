@@ -2,6 +2,7 @@ package Main;
 
 import Object.Obj_Door;
 import Object.Obj_Key;
+import Object.Obj_Boost;
 
 public class AssetsManagement {
 
@@ -28,6 +29,10 @@ public class AssetsManagement {
         gp.obj[3] = new Obj_Door();
         gp.obj[3].worldX = 12 * gp.tileSize;
         gp.obj[3].worldY = 22 * gp.tileSize;
+
+        gp.obj[4] = new Obj_Boost();
+        gp.obj[4].worldX = 37 * gp.tileSize;
+        gp.obj[4].worldY = 42 * gp.tileSize;
 
     }
 }
