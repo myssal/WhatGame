@@ -1,6 +1,5 @@
 package Main;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Main {
@@ -11,8 +10,6 @@ public class Main {
         Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Window.setResizable(false);
         Window.setTitle("2D Adventure");
-        
-        //set game icon
 
          
         GamePanel gamePanel = new GamePanel();

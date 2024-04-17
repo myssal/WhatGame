@@ -13,19 +13,21 @@ import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    //SETTING SCREEN
+    //tile size setting
     final int originalTileSize = 16;//object size
     final int scale = 3; //scale size to fit screen width
-
     final public int tileSize = originalTileSize * scale;//scale size
-    //WORLD SETTINGS
+
+    //world setting
     final public int maxWorldCol = 50;
     final public int maxWorldRow = 50;
     final public int worldWidth = maxWorldCol * tileSize;
     final public int worldHeight = maxWorldRow * tileSize;
 
-    //FPS
+    //fps
     final int FPS = 60;
+
+    //screen setting
     final public int maxScreenCol = 16;
     final public int maxScreenRow = 12;
     final public int screenWidth  = tileSize * maxScreenCol;
@@ -34,7 +36,9 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound soundEffect = new Sound();
-    Thread gameThread;    
+    Thread gameThread;
+
+    //entity and object setting
     public Player player = new Player(this,keyH);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public SuperObject obj[] = new SuperObject[10]; //create an object arrays to store the object that'll appear in game
