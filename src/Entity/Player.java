@@ -69,7 +69,6 @@ public class Player extends Entity{
 
         try {
             scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/"+imagePath+".png"));
-            scaledImage = util.scaleImage(scaledImage, gp.tileSize, gp.tileSize);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -223,6 +222,6 @@ public class Player extends Entity{
             default:
                 break;
         }
-        graph2.drawImage(image, screenX, screenY, null);
+        graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }

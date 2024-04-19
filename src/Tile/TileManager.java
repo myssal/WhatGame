@@ -42,36 +42,19 @@ public class TileManager {
             e.printStackTrace();
         }
         for (Tile tileIt : TileList){
-            setUp(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
+            Utility util = new Utility();
+            try {
+
+                tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
+                tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/" + tileIt.tileName +".png"));
+                //tile[tileIt.tileOrder].image = util.scaleImage(tile[tileIt.tileOrder].image, gp.tileSize, gp.tileSize);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
+        //optimization idea: parse tile list as .json or .txt and read over it one by one. Done!
 
-
-
-
-        //optimization idea: parse tile list as .json or .txt and read over it one by one.
-        /*
-        setUp(0, "grass", false);
-        setUp(1, "wall", true);
-        setUp(2, "water", true);
-        setUp(3, "earth", false);
-        setUp(4, "tree", true);
-        setUp(5, "sand", false);*/
-    }
-
-    //class to set up image
-    public void setUp(int index, String imagePath, boolean collision){
-
-        //enhanced image size
-        Utility util = new Utility();
-        try {
-
-            tile[index] = new Tile(index, imagePath, collision);
-            tile[index].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("res/tiles/" + imagePath + ".png"));
-            tile[index].image = util.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
 
     public void loadMap(String filePath){
@@ -129,7 +112,7 @@ public class TileManager {
                 worldY + gp.tileSize + 1 > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize - 1 < gp.player.worldY + gp.player.screenY){
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
             }
 
