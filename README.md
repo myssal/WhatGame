@@ -7,11 +7,11 @@
   Member list:
   ```
   
-  Cao Trung Hieu
+  Cao Trung Hiếu
   
-  Vu Ngoc Tien Minh
+  Vũ Ngọc Tiến Minh
   
-  Nguyen Van Hau
+  Nguyễn Văn Hậu
 
   ```
   
