@@ -18,7 +18,6 @@ public class Player extends Entity{
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
 
     //constructor
     public Player(GamePanel gp, KeyHandler keyH){
@@ -30,8 +29,8 @@ public class Player extends Entity{
 
         //setting the collision area
         solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 16;
+        solidArea.x = 9;
+        solidArea.y = 15;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         solidArea.height = 32;
@@ -69,7 +68,6 @@ public class Player extends Entity{
 
         try {
             scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/"+imagePath+".png"));
-            scaledImage = util.scaleImage(scaledImage, gp.tileSize, gp.tileSize);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -148,32 +146,7 @@ public class Player extends Entity{
         //set up interaction with object
         if (index != 999){
 
-            String objectName = gp.obj[index].name;
 
-            switch (objectName){
-                case "Key":
-                    gp.playSoundEffect(1);
-                    hasKey++;
-                    gp.ui.showMessage("You got a key");
-                    gp.obj[index] = null;
-                    break;
-                case "Door":
-                    if(hasKey > 0){
-                        gp.obj[index] = null;
-                        gp.ui.showMessage("You opened a door!");
-                        hasKey--;
-                    }
-                    else gp.ui.showMessage("You need a key");
-                    break;
-                case "Boost":
-                    speed += 4;
-                    gp.obj[index] = null;
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    break;
-            }
         }
     }
 
@@ -223,6 +196,6 @@ public class Player extends Entity{
             default:
                 break;
         }
-        graph2.drawImage(image, screenX, screenY, null);
+        graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }

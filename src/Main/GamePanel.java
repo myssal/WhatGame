@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
     final public int maxScreenRow = 12;
     final public int screenWidth  = tileSize * maxScreenCol;
     final public int screenHeight  = tileSize * maxScreenRow;
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound soundEffect = new Sound();
@@ -45,6 +45,10 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetsManagement aManagement = new AssetsManagement(this);
     public UI ui = new UI(this);
     //set default position
+    //game state
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
 
     //initialize constructor
@@ -60,8 +64,9 @@ public class GamePanel extends JPanel implements Runnable{
     public void setUpGame(){
         //set up object in the map
         aManagement.setObject();
-
         playMusic(0);
+        stopMusic();
+        gameState = playState;
 
     }
 
@@ -108,8 +113,16 @@ public class GamePanel extends JPanel implements Runnable{
     //x increases to the right, y increase when go down
     //render game screen
     public void update(){
-        //call player update
-        player.update();
+
+        if (gameState == playState){
+            //call player update
+            player.update();
+        }
+
+        if (gameState == pauseState){
+            //do nothing;
+        }
+
     }
 
     public void paintComponent(Graphics graph){
