@@ -5,5 +5,29 @@
 4 tree true
 5 sand false
 
+//new tile
 
-
+10 res/Mapping/bfloor.png false
+11 res/Mapping/bfloor1.png false
+12 res/Mapping/bfloor2.png false
+13 res/Mapping/bush.png false
+14 res/Mapping/bush2.png false
+15 res/Mapping/floor1.png false
+16 res/Mapping/floor2.png false
+17 res/Mapping/GRASS01.jpg false
+18 res/Mapping/GRASS02.png false
+29 res/Mapping/GRASS03.jpg false
+20 res/Mapping/GRASS04.jpg false
+21 res/Mapping/GRASS05.jpg true
+22 res/Mapping/rock3.jpg true
+23 res/Mapping/rock4.jpg true
+24 res/Mapping/spike.png trues
+25 res/Mapping/tree.png true
+26 res/Mapping/water.png true
+27 res/Mapping/water1.png true
+28 res/Mapping/water2.png true
+29 res/Mapping/water3.png true
+30 res/Mapping/wrock.png true
+31 res/Mapping/wrock1.png true
+32 res/Mapping/wrock2.png true
+33 res/Mapping/wrock3.png true
