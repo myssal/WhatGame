@@ -1,6 +1,6 @@
-10 grass false
-11 wall true
-12 water true
-13 earth false
-14 tree true
-15 sand false
+0 grass false
+1 wall true
+2 water true
+3 earth false
+4 tree true
+5 sand false

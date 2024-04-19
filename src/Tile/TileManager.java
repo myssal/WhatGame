@@ -42,16 +42,19 @@ public class TileManager {
             e.printStackTrace();
         }
         for (Tile tileIt : TileList){
-            Utility util = new Utility();
-            try {
+                try {
+                    //fix to 10 later
+                    if (tileIt.tileOrder >= 0){
+                        tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
+                        tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/" + tileIt.tileName +".png"));
+                        //tile[tileIt.tileOrder].image = util.scaleImage(tile[tileIt.tileOrder].image, gp.tileSize, gp.tileSize);
+                    }
 
-                tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
-                tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/" + tileIt.tileName +".png"));
-                //tile[tileIt.tileOrder].image = util.scaleImage(tile[tileIt.tileOrder].image, gp.tileSize, gp.tileSize);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
 
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+
         }
         //optimization idea: parse tile list as .json or .txt and read over it one by one. Done!
 
