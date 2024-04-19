@@ -5,10 +5,9 @@ import Main.Utility;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TileManager {
 
@@ -29,13 +28,34 @@ public class TileManager {
 
     public void getTileImage(){
 
-            //optimization idea: parse tile list as .json or .txt and read over it one by one.
-            setUp(0, "grass", false);
-            setUp(1, "wall", true);
-            setUp(2, "water", true);
-            setUp(3, "earth", false);
-            setUp(4, "tree", true);
-            setUp(5, "sand", false);
+        ArrayList<Tile> TileList = new ArrayList<Tile>();
+        try {
+
+            Scanner TileIn = new Scanner(new File("res/maps/tileList.txt"));
+            while (TileIn.hasNext()){
+                int TileOrder = TileIn.nextInt();
+                String TileName = TileIn.next();
+                boolean Collision = TileIn.nextBoolean();
+                TileList.add(new Tile(TileOrder, TileName, Collision));
+            }
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        for (Tile tileIt : TileList){
+            setUp(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
+        }
+
+
+
+
+        //optimization idea: parse tile list as .json or .txt and read over it one by one.
+        /*
+        setUp(0, "grass", false);
+        setUp(1, "wall", true);
+        setUp(2, "water", true);
+        setUp(3, "earth", false);
+        setUp(4, "tree", true);
+        setUp(5, "sand", false);*/
     }
 
     //class to set up image
@@ -45,10 +65,10 @@ public class TileManager {
         Utility util = new Utility();
         try {
 
-            tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/" + imagePath + ".png"));
+            tile[index] = new Tile(index, imagePath, collision);
+            tile[index].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("res/tiles/" + imagePath + ".png"));
             tile[index].image = util.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
-            tile[index].collision = collision;
+
         }catch (IOException e){
             e.printStackTrace();
         }
