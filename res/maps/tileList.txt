@@ -21,7 +21,7 @@
 21 res/Mapping/GRASS05.jpg true
 22 res/Mapping/rock3.jpg true
 23 res/Mapping/rock4.jpg true
-24 res/Mapping/spike.png trues
+24 res/Mapping/spike.png true
 25 res/Mapping/tree.png true
 26 res/Mapping/water.png true
 27 res/Mapping/water1.png true
