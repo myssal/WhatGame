@@ -13,15 +13,14 @@ import Main.KeyHandler;
 import Main.Utility;
 
 public class Player extends Entity{
-    
-    GamePanel gp;
+
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
 
     //constructor
     public Player(GamePanel gp, KeyHandler keyH){
-
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -50,29 +49,17 @@ public class Player extends Entity{
     }
     public void getPlayerImage(){
         //enhanced player image
-        up1 = setUp("boy_up_1");
-        up2 = setUp("boy_up_2");
-        down1 = setUp("boy_down_1");
-        down2 = setUp("boy_down_2");
-        right1 = setUp("boy_right_1");
-        right2 = setUp("boy_right_2");
-        left1 = setUp("boy_left_1");
-        left2 = setUp("boy_left_2");
+        up1 = setUp("player/boy_up_1");
+        up2 = setUp("player/boy_up_2");
+        down1 = setUp("player/boy_down_1");
+        down2 = setUp("player/boy_down_2");
+        right1 = setUp("player/boy_right_1");
+        right2 = setUp("player/boy_right_2");
+        left1 = setUp("player/boy_left_1");
+        left2 = setUp("player/boy_left_2");
 
     }
 
-    public BufferedImage setUp(String imagePath){
-
-        Utility util = new Utility();
-        BufferedImage scaledImage = null;
-
-        try {
-            scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/"+imagePath+".png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return scaledImage;
-    }
     public void update(){
         
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
@@ -101,6 +88,10 @@ public class Player extends Entity{
             //object collision check
             int objIndex = gp.collisionChecker.checkObject(this,true);
             pickUpObject(objIndex); //call method handling objects
+
+            //check object collision
+            int npcChecker = gp.collisionChecker.checkEntity(this, gp.npc);
+            interactNPC(npcChecker);
 
             //if false, player can move
             if(collisonOn == false){
@@ -147,6 +138,13 @@ public class Player extends Entity{
         if (index != 999){
 
 
+        }
+    }
+
+    public void interactNPC(int index){
+
+        if (index != 999){
+            System.out.println("Hit npc");
         }
     }
 

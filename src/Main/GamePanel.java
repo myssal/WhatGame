@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import Entity.Entity;
 import Object.Object;
 import Entity.Player;
 import Tile.TileManager;
@@ -40,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //entity and object setting
     public Player player = new Player(this,keyH);
+    public Entity npc[] = new Entity[5];
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Object obj[] = new Object[10]; //create an object arrays to store the object that'll appear in game
     public AssetsManagement aManagement = new AssetsManagement(this);
@@ -64,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void setUpGame(){
         //set up object in the map
         aManagement.setObject();
+        aManagement.setNPC();
         playMusic(0);
         stopMusic();
         gameState = playState;
@@ -117,6 +120,12 @@ public class GamePanel extends JPanel implements Runnable{
         if (gameState == playState){
             //call player update
             player.update();
+            //npc
+            for (int i = 0; i < npc.length; i++){
+                if (npc[i] != null){
+                    npc[i].update();
+                }
+            }
         }
 
         if (gameState == pauseState){
@@ -147,6 +156,14 @@ public class GamePanel extends JPanel implements Runnable{
                 obj[i].draw(graph2,this);
             }
 
+        }
+
+        //npc
+        for (int i = 0; i < npc.length; i++){
+
+            if (npc[i] != null){
+                npc[i].draw(graph2);
+            }
         }
 
         //player
