@@ -2,6 +2,7 @@ package Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.Utility;
 
 public class Player extends Entity{
     
@@ -48,23 +50,31 @@ public class Player extends Entity{
         direction = "down";
     }
     public void getPlayerImage(){
-        
-        try {
-            
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_down_2.png"));
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_right_2.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/boy_left_2.png"));
+        //enhanced player image
+        up1 = setUp("boy_up_1");
+        up2 = setUp("boy_up_2");
+        down1 = setUp("boy_down_1");
+        down2 = setUp("boy_down_2");
+        right1 = setUp("boy_right_1");
+        right2 = setUp("boy_right_2");
+        left1 = setUp("boy_left_1");
+        left2 = setUp("boy_left_2");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
+    public BufferedImage setUp(String imagePath){
+
+        Utility util = new Utility();
+        BufferedImage scaledImage = null;
+
+        try {
+            scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/"+imagePath+".png"));
+            scaledImage = util.scaleImage(scaledImage, gp.tileSize, gp.tileSize);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return scaledImage;
+    }
     public void update(){
         
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
@@ -213,6 +223,6 @@ public class Player extends Entity{
             default:
                 break;
         }
-        graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        graph2.drawImage(image, screenX, screenY, null);
     }
 }

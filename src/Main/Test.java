@@ -13,14 +13,17 @@ import java.util.Random;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        
+        /*
         Random rn = new Random(4);
         for (int i = 0; i < 100; i++){
             for (int j = 0; j < 100; j++){
                 System.out.print(rn.nextInt(4)+" ");
             }
             System.out.println(" ");
-        }
+        }*/
+        String test = "hello";
+        System.out.println("WHat "+test+"????");
+
 
     }
 }

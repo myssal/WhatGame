@@ -1,0 +1,6 @@
+0 grass
+1 wall
+2 water	
+3 earth
+4 tree
+5 sand

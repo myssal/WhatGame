@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import Object.SuperObject;
+import Object.Object;
 import Entity.Player;
 import Tile.TileManager;
 
@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     //entity and object setting
     public Player player = new Player(this,keyH);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public SuperObject obj[] = new SuperObject[10]; //create an object arrays to store the object that'll appear in game
+    public Object obj[] = new Object[10]; //create an object arrays to store the object that'll appear in game
     public AssetsManagement aManagement = new AssetsManagement(this);
     public UI ui = new UI(this);
     //set default position
@@ -106,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //Java coordination: upper left corner = (0,0)
     //x increases to the right, y increase when go down
+    //render game screen
     public void update(){
         //call player update
         player.update();
@@ -116,6 +117,12 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(graph);
 
         Graphics2D graph2 = (Graphics2D)graph;
+
+        //debug, find out rendering time
+        long drawStart = 0;
+        if (keyH.debugPressed){
+            drawStart = System.nanoTime();
+        }
 
         //tile
         tileM.draw(graph2);
@@ -135,20 +142,31 @@ public class GamePanel extends JPanel implements Runnable{
         //ui
         ui.draw(graph2);
 
+        if (keyH.debugPressed) {
+            long drawEnd;
+            drawEnd = System.nanoTime();
+            long timeRender = drawEnd - drawStart;
+            graph2.setColor(Color.white);
+            graph2.drawString("Time render: " + timeRender, 30, 30);
+            System.out.println("Time render: " + timeRender);
+        }
+        //end debug
+
         graph2.dispose();
     }
 
+    //function to handle bgm
     public void playMusic(int i){
 
         music.setFile(i);
         music.play();
         music.loop();
     }
-
     public void stopMusic(){
         music.stop();
     }
 
+    //function to handle sfx
     public void playSoundEffect(int i){
 
         soundEffect.setFile(i);

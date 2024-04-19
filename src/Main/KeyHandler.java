@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
     
     public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean debugPressed = false; //debug mode add
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -30,6 +31,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;            
         }
+        //debug handler
+        if (code == KeyEvent.VK_1) {
+            if (debugPressed == true) debugPressed = false;
+            else if (debugPressed == false) debugPressed = true;
+        }
     }
 
     @Override
@@ -52,3 +58,5 @@ public class KeyHandler implements KeyListener {
     }
     
 }
+
+//Improve rendering performance: preset scale size before put them into gp
