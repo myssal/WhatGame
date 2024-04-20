@@ -33,7 +33,7 @@ public class NPCSage extends Entity{
         dialogues[0] = "Asegrgrgree";
         dialogues[1] = "Who tf are you\nGet tf out of here";
         dialogues[2] = "*Screaming in weird languages*";
-        dialogues[3] = "Nevermind, welcome to this bullshit island";
+        dialogues[3] = "Err, close enough";
     }
 
     //simple AI setup for npc

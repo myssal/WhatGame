@@ -6,9 +6,9 @@ import Main.Utility;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Object {
+public class ObjectTmp {
 
-    public BufferedImage image;
+    public BufferedImage image, imageVar1, imageVar2;
     public String name;
     public boolean collision = true;
     public int worldX, worldY;

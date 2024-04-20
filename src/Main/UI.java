@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
-import Object.Obj_Key;
+import Object.Obj_Heart;
+import Object.ObjectTmp;
 
 import javax.imageio.ImageIO;
 
@@ -22,6 +23,7 @@ public class UI {
     DecimalFormat dFormat = new DecimalFormat("0.00");
     public String currentDialogue = "";
     Font maruMonica;
+    BufferedImage heartFull, heartHalf, heartBlank;
     public int commandNum = 0; //title screen choice
     public int titleScreenState = 0;//load different title screen
 
@@ -34,6 +36,12 @@ public class UI {
         }catch (IOException | FontFormatException e){
             e.printStackTrace();
         }
+
+        //hud object
+        ObjectTmp heart = new Obj_Heart(gp);
+        heartFull = heart.image;
+        heartHalf = heart.imageVar1;
+        heartBlank = heart.imageVar2;
 
     }
 
@@ -55,16 +63,18 @@ public class UI {
 
         //play state
         if (gp.gameState == gp.playState){
-            
+            drawPlayerHP();
         }
 
         //dialogue stata
         if (gp.gameState == gp.dialogueState){
+            drawPlayerHP();
             drawDialogueWindow();
         }
 
         //pause state
         if (gp.gameState == gp.pauseState) {
+            drawPlayerHP();
             drawPauseScreen();
         }
 
@@ -188,6 +198,37 @@ public class UI {
         graph2.setColor(color);
         graph2.setStroke(new BasicStroke(5));
         graph2.drawRoundRect(x + 5,  y+ 5, width - 10, height - 10, 20, 20);
+    }
+
+    //Hp hud
+    public void drawPlayerHP(){
+
+        gp.player.HP = 5;
+
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
+
+        //max hp display
+        while (i < gp.player.maxHP / 2){
+            graph2.drawImage(heartFull, x, y, gp.tileSize, gp.tileSize, null);
+            i++;
+            x+= gp.tileSize;
+        }
+        //reset
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
+        while (i < gp.player.HP){
+            graph2.drawImage(heartHalf, x, y, gp.tileSize, gp.tileSize, null);
+            i++;
+            if (i < gp.player.HP){
+                graph2.drawImage(heartFull, x, y, gp.tileSize, gp.tileSize, null);
+            }
+            i++;
+            x+= gp.tileSize;
+        }
+
     }
 
     //QoL function

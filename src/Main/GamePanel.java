@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Entity.Entity;
-import Object.Object;
+import Object.ObjectTmp;
 import Entity.Player;
 import Tile.TileManager;
 
@@ -43,10 +43,12 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this,keyH);
     public Entity npc[] = new Entity[5];
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public Object obj[] = new Object[10]; //create an object arrays to store the object that'll appear in game
+    public ObjectTmp obj[] = new ObjectTmp[10]; //create an object arrays to store the object that'll appear in game
     public AssetsManagement aManagement = new AssetsManagement(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     //set default position
+
     //game state
     public int gameState;
     public final int titleState = 0;

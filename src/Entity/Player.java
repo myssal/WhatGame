@@ -46,6 +46,11 @@ public class Player extends Entity{
         worldY = gp.tileSize*48;
         speed = 7;
         direction = "right";
+
+        //status
+        maxHP = 6;
+        HP = maxHP;
+
     }
     public void getPlayerImage(){
         //enhanced player image
@@ -92,6 +97,10 @@ public class Player extends Entity{
             //check object collision
             int npcChecker = gp.collisionChecker.checkEntity(this, gp.npc);
             interactNPC(npcChecker);
+
+            //check event collision
+            gp.eHandler.checkEvent();
+            gp.keyH.enterPressed = false;
 
             //if false, player can move
             if(collisonOn == false){
@@ -150,7 +159,6 @@ public class Player extends Entity{
                 gp.npc[index].speak();
             }
         }
-        gp.keyH.enterPressed =  false;
     }
 
     public void draw(Graphics2D graph2){

@@ -5,7 +5,7 @@ import Main.GamePanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Obj_Key extends Object {
+public class Obj_Key extends ObjectTmp {
 
     GamePanel gp;
 

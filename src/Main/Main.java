@@ -1,6 +1,8 @@
 package Main;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import java.awt.image.BufferedImage;
 
 public class Main {
     
@@ -9,7 +11,7 @@ public class Main {
         JFrame Window = new JFrame();
         Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Window.setResizable(false);
-        Window.setTitle("2D Adventure");
+        Window.setTitle("What game????");
 
          
         GamePanel gamePanel = new GamePanel();

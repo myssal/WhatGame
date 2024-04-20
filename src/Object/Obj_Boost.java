@@ -5,7 +5,7 @@ import Main.GamePanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Obj_Boost extends Object {
+public class Obj_Boost extends ObjectTmp {
 
     GamePanel gp;
     public Obj_Boost(GamePanel gp){
