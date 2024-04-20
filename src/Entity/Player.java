@@ -28,8 +28,8 @@ public class Player extends Entity{
 
         //setting the collision area
         solidArea = new Rectangle();
-        solidArea.x = 9;
-        solidArea.y = 15;
+        solidArea.x = 10;
+        solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         solidArea.height = 32;
@@ -42,21 +42,21 @@ public class Player extends Entity{
     //set default Player position
     public void setDefaultValue(){
 
-        worldX = gp.tileSize*4;
-        worldY = gp.tileSize*44;
+        worldX = gp.tileSize*8;
+        worldY = gp.tileSize*48;
         speed = 10;
         direction = "right";
     }
     public void getPlayerImage(){
         //enhanced player image
-        up1 = setUp("player/boy_up_1");
-        up2 = setUp("player/boy_up_2");
-        down1 = setUp("player/boy_down_1");
-        down2 = setUp("player/boy_down_2");
-        right1 = setUp("player/boy_right_1");
-        right2 = setUp("player/boy_right_2");
-        left1 = setUp("player/boy_left_1");
-        left2 = setUp("player/boy_left_2");
+        up1 = setUp("entity/player/mainUp_1");
+        up2 = setUp("entity/player/mainUp_2");
+        down1 = setUp("entity/player/mainDown_1");
+        down2 = setUp("entity/player/mainDown_2");
+        right1 = setUp("entity/player/mainRight_1");
+        right2 = setUp("entity/player/mainRight_2");
+        left1 = setUp("entity/player/mainLeft_1");
+        left2 = setUp("entity/player/mainLeft_2");
 
     }
 
@@ -149,9 +149,6 @@ public class Player extends Entity{
     }
 
     public void draw(Graphics2D graph2){
-
-        //graph2.setColor(Color.white);
-        //graph2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
 
