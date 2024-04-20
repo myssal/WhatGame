@@ -22,3 +22,4 @@
 31 tileMap/wrock1.png true
 32 tileMap/wrock2.png true
 33 tileMap/wrock3.png true
+34 res/tileMap/rock5.png true
