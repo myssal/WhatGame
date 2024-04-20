@@ -42,10 +42,10 @@ public class Player extends Entity{
     //set default Player position
     public void setDefaultValue(){
 
-        worldX = gp.tileSize*5;
-        worldY = gp.tileSize*40;
-        speed = 5;
-        direction = "down";
+        worldX = gp.tileSize*4;
+        worldY = gp.tileSize*44;
+        speed = 10;
+        direction = "right";
     }
     public void getPlayerImage(){
         //enhanced player image

@@ -1,7 +1,6 @@
 package Tile;
 
 import Main.GamePanel;
-import Main.Utility;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,42 +18,46 @@ public class TileManager {
 
         this.gp = gp;
 
-        tile = new Tile[50];
+        tile = new Tile[40];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
-
-        getTileImage();
+        getTileImage("res/maps/tileList.txt");
         loadMap("res/maps/completeMap.txt");
-    }
-
-    public void getTileImage() {
-        try {
-            for (int i = 0; i < 10; i++){
-                tile[i] = new Tile(i, "Mapping/bfloor.png", false);
+        /*try {
+            for (int i = 0; i < tile.length; i++){
+                tile[i] = new Tile(i, "tileMap/floor1.png", false);
                 tile[i].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile[i].tileName));
             }
         }catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
 
-        ArrayList<Tile> TileList = new ArrayList<Tile>();
+
+
+    }
+
+    public void getTileImage(String tileListPath) {
+
         try {
 
-            Scanner TileIn = new Scanner(new File("res/maps/tileList.txt"));
+            int i = 10;
+            Scanner TileIn = new Scanner(new File(tileListPath));
             while (TileIn.hasNext()){
-                int TileOrder = TileIn.nextInt();
-                String TileName = TileIn.next();
-                boolean Collision = TileIn.nextBoolean();
-                TileList.add(new Tile(TileOrder, TileName, Collision));
+                int tileOrder = TileIn.nextInt();
+                String tileName = TileIn.next();
+                boolean collision = TileIn.nextBoolean();
+                //TileList.add(new Tile(TileOrder, TileName, Collision));
+                tile[i] = new Tile(tileOrder, tileName, collision);
+                i++;
             }
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }
-        for (Tile tileIt : TileList){
+        for (int i = 10; i < 34; i++){
                 try {
                     //fix to 10 later
                     //if (tileIt.tileOrder >= 10){
-                        tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
-                        tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tileIt.tileName));
+                        //tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
+                        tile[i].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile[i].tileName));
                         //tile[tileIt.tileOrder].image = util.scaleImage(tile[tileIt.tileOrder].image, gp.tileSize, gp.tileSize);
                     //}
 
@@ -71,6 +74,17 @@ public class TileManager {
     public void loadMap(String filePath){
 
         try{
+            Scanner mapScanner = new Scanner(new File(filePath));
+            int col = 0, row = 0;
+            while (mapScanner.hasNext()){
+                mapTileNum[col][row] = mapScanner.nextInt();
+                col++;
+                if (col == 100){
+                    row ++;
+                    col = 0;
+                }
+            }
+            /*
             //import text map
             InputStream is = getClass().getClassLoader().getResourceAsStream(filePath);
             //read text map
@@ -95,7 +109,7 @@ public class TileManager {
                     row++;
                 }
             }
-            br.close();
+            br.close();*/
         }catch(Exception e){
 
         }

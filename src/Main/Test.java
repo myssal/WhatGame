@@ -43,22 +43,18 @@ public class Test {
         for (Tile.TileOriginal i : TileList){
             System.out.println(i.tileOrder+i.tileName);
         }
-*/
-        ArrayList<Tile> TileList = new ArrayList<Tile>();
-        try {
-
-            Scanner TileIn = new Scanner(new File("res/maps/tileList.txt"));
-            while (TileIn.hasNext()){
-                int TileOrder = TileIn.nextInt();
-                String TileName = TileIn.next();
-                boolean Collision = TileIn.nextBoolean();
-                TileList.add(new Tile(TileOrder, TileName, Collision));
+*/      int[][] mapTileNum = new int[100][50];
+        Scanner mapScanner = new Scanner(new File("res/maps/completeMap.txt"));
+        int col = 0, row = 0;
+        while (mapScanner.hasNext()){
+            mapTileNum[col][row] = mapScanner.nextInt();
+            col++;
+            if (col == 100){
+                row ++;
+                col = 0;
             }
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
         }
-        for (Tile tileIt : TileList){
-            System.out.println(tileIt.tileOrder+tileIt.tileName+tileIt.collision);
-        }
+        System.out.println(mapTileNum[0][49]);
+
     }
 }
