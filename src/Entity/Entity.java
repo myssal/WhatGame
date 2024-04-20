@@ -19,7 +19,7 @@ public class Entity {
 
     public int spriteCounter = 0; //variable to create a "loop" animation
     public int spriteNum = 1; //decide which sprite to use in "loop" animation
-    public Rectangle solidArea = new Rectangle(3, 3, 45, 45); //create collision area for entity
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48); //create collision area for entity
     public int solidAreaDefaultX, solidAreaDefaultY; //store default collision area coordinates
     public boolean collisonOn = false;
     public int actionLockCounter = 0;
@@ -35,7 +35,7 @@ public class Entity {
         BufferedImage scaledImage = null;
 
         try {
-            scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imagePath));
+            scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imagePath+".png"));
         }catch (IOException e){
             e.printStackTrace();
         }
