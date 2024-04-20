@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
     //set default position
     //game state
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
         aManagement.setNPC();
         playMusic(0);
         stopMusic();
-        gameState = playState;
+        gameState = titleState;
 
     }
 
@@ -147,31 +148,40 @@ public class GamePanel extends JPanel implements Runnable{
             drawStart = System.nanoTime();
         }
 
-        //tile
-        tileM.draw(graph2);
+        //title screen
+        if (gameState == titleState){
 
-        //object
-        for (int i = 0; i < obj.length; i++){
+            ui.draw(graph2);
 
-            if(obj[i] != null){
-                obj[i].draw(graph2,this);
+        }//others
+        else {
+
+            //tile
+            tileM.draw(graph2);
+
+            //object
+            for (int i = 0; i < obj.length; i++){
+
+                if(obj[i] != null){
+                    obj[i].draw(graph2,this);
+                }
+
             }
 
-        }
+            //npc
+            for (int i = 0; i < npc.length; i++){
 
-        //npc
-        for (int i = 0; i < npc.length; i++){
-
-            if (npc[i] != null){
-                npc[i].draw(graph2);
+                if (npc[i] != null){
+                    npc[i].draw(graph2);
+                }
             }
+
+            //player
+            player.draw(graph2);
+
+            //ui
+            ui.draw(graph2);
         }
-
-        //player
-        player.draw(graph2);
-
-        //ui
-        ui.draw(graph2);
 
         if (keyH.debugPressed) {
             long drawEnd;

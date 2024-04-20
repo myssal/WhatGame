@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 
 import Object.Obj_Key;
 
+import javax.imageio.ImageIO;
+
 public class UI {
 
     GamePanel gp;
@@ -20,6 +22,7 @@ public class UI {
     DecimalFormat dFormat = new DecimalFormat("0.00");
     public String currentDialogue = "";
     Font maruMonica;
+    public int commandNum = 0; //title screen choice
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -43,6 +46,11 @@ public class UI {
         graph2.setFont(maruMonica);
         graph2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graph2.setColor(Color.white);
+
+        //title state
+        if (gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
 
         //play state
         if (gp.gameState == gp.playState){
@@ -69,6 +77,54 @@ public class UI {
         int y = gp.screenHeight / 2;
 
         graph2.drawString(gameState, x, y);
+    }
+    //title screen
+    public void drawTitleScreen(){
+
+        //title screen background, currently using placeholder
+        try {
+
+            BufferedImage titleImage;
+            titleImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/titleScreen.jpg"));
+            graph2.drawImage(titleImage, 0, 0, gp.tileSize * 16, gp.tileSize * 12, null);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        //title name
+        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 80F));
+        String gameTitle = "What Game?";
+        int x = getXCenteredText(gameTitle, graph2);
+        int y = gp.tileSize * 3;
+
+        //shadow
+        Color titleColorShadow = new Color(21, 146, 182, 255);
+        graph2.setColor(titleColorShadow);
+        graph2.drawString(gameTitle, x + 4, y + 4);
+        //main title
+        Color titleColor = new Color(86, 175, 217);
+        graph2.setColor(titleColor);
+        graph2.drawString(gameTitle, x, y);
+
+        //menu
+        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 40F));
+        String[] menuOption = new String[]{"NEW GAME", "LOAD GAME", "QUIT"};
+        for (int menuIt = 0; menuIt < menuOption.length; menuIt++){
+
+            x = getXCenteredText(menuOption[menuIt], graph2);
+            y = gp.tileSize * (6 + menuIt * 2);
+            graph2.setColor(titleColorShadow);
+            graph2.drawString(menuOption[menuIt], x + 4, y + 4);
+            graph2.setColor(titleColor);
+            graph2.drawString(menuOption[menuIt], x, y);
+            if (commandNum == menuIt){
+                graph2.setColor(titleColorShadow);
+                graph2.drawString(">", x - gp.tileSize + 4, y + 4);
+                graph2.setColor(titleColor);
+                graph2.drawString(">", x - gp.tileSize, y);
+            }
+
+        }
     }
     //dialogue draw
     public void drawDialogueWindow(){
