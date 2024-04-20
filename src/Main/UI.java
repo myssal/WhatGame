@@ -23,6 +23,7 @@ public class UI {
     public String currentDialogue = "";
     Font maruMonica;
     public int commandNum = 0; //title screen choice
+    public int titleScreenState = 0;//load different title screen
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -80,51 +81,81 @@ public class UI {
     }
     //title screen
     public void drawTitleScreen(){
+        if (titleScreenState == 0){
+            //title screen background, currently using placeholder
+            try {
 
-        //title screen background, currently using placeholder
-        try {
-
-            BufferedImage titleImage;
-            titleImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/titleScreen.jpg"));
-            graph2.drawImage(titleImage, 0, 0, gp.tileSize * 16, gp.tileSize * 12, null);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-        //title name
-        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 80F));
-        String gameTitle = "What Game?";
-        int x = getXCenteredText(gameTitle, graph2);
-        int y = gp.tileSize * 3;
-
-        //shadow
-        Color titleColorShadow = new Color(21, 146, 182, 255);
-        graph2.setColor(titleColorShadow);
-        graph2.drawString(gameTitle, x + 4, y + 4);
-        //main title
-        Color titleColor = new Color(86, 175, 217);
-        graph2.setColor(titleColor);
-        graph2.drawString(gameTitle, x, y);
-
-        //menu
-        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 40F));
-        String[] menuOption = new String[]{"NEW GAME", "LOAD GAME", "QUIT"};
-        for (int menuIt = 0; menuIt < menuOption.length; menuIt++){
-
-            x = getXCenteredText(menuOption[menuIt], graph2);
-            y = gp.tileSize * (6 + menuIt * 2);
-            graph2.setColor(titleColorShadow);
-            graph2.drawString(menuOption[menuIt], x + 4, y + 4);
-            graph2.setColor(titleColor);
-            graph2.drawString(menuOption[menuIt], x, y);
-            if (commandNum == menuIt){
-                graph2.setColor(titleColorShadow);
-                graph2.drawString(">", x - gp.tileSize + 4, y + 4);
-                graph2.setColor(titleColor);
-                graph2.drawString(">", x - gp.tileSize, y);
+                BufferedImage titleImage;
+                titleImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/titleScreen.jpg"));
+                graph2.drawImage(titleImage, 0, 0, gp.tileSize * 16, gp.tileSize * 12, null);
+            }catch (IOException e){
+                e.printStackTrace();
             }
 
+            //title name
+            graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 80F));
+            String gameTitle = "What Game?";
+            int x = getXCenteredText(gameTitle, graph2);
+            int y = gp.tileSize * 3;
+
+            //shadow
+            Color titleColorShadow = new Color(21, 146, 182, 255);
+            graph2.setColor(titleColorShadow);
+            graph2.drawString(gameTitle, x + 4, y + 4);
+            //main title
+            Color titleColor = new Color(86, 175, 217);
+            graph2.setColor(titleColor);
+            graph2.drawString(gameTitle, x, y);
+
+            //menu
+            graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 40F));
+            String[] menuOption = new String[]{"NEW GAME", "LOAD GAME", "QUIT"};
+            for (int menuIt = 0; menuIt < menuOption.length; menuIt++){
+
+                x = getXCenteredText(menuOption[menuIt], graph2);
+                y = gp.tileSize * (6 + menuIt * 2);
+                graph2.setColor(titleColorShadow);
+                graph2.drawString(menuOption[menuIt], x + 4, y + 4);
+                graph2.setColor(titleColor);
+                graph2.drawString(menuOption[menuIt], x, y);
+                if (commandNum == menuIt){
+                    graph2.setColor(titleColorShadow);
+                    graph2.drawString(">", x - gp.tileSize + 4, y + 4);
+                    graph2.setColor(titleColor);
+                    graph2.drawString(">", x - gp.tileSize, y);
+                }
+
+            }
+        } else if (titleScreenState == 1) {
+
+            //tutorial screen
+            graph2.setColor(Color.gray);
+            graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,40F));
+            String mainText = "Tutorial";
+            int xMainTitle = getXCenteredText(mainText, graph2);
+            graph2.drawString(mainText, xMainTitle, gp.tileSize * 2);
+
+            //keyboard tutorial
+            graph2.setFont(graph2.getFont().deriveFont(Font.PLAIN,30F));
+            graph2.drawString("Move: WASD or arrow key", gp.tileSize * 4, gp.tileSize * 4);
+            graph2.drawString("Attack:      Pause: P", gp.tileSize * 4, gp.tileSize * 5);
+            graph2.drawString("Attack:      Pause: P", gp.tileSize * 4, gp.tileSize * 5);
+            int xBack = getXCenteredText("Back to Title Screen", graph2);
+            int xUp = getXCenteredText("To the Game", graph2);
+            graph2.drawString("Back to Title Screen", xBack, gp.tileSize * 10);
+
+            //choice
+            if (commandNum == 0){
+                graph2.drawString(">", xBack - gp.tileSize, gp.tileSize * 10 + 4);
+            }
+            graph2.drawString("To the Game", xUp, gp.tileSize * 11);
+            if (commandNum == 1){
+                graph2.drawString(">", xUp - gp.tileSize, gp.tileSize * 11 + 4);
+            }
+
+            
         }
+
     }
     //dialogue draw
     public void drawDialogueWindow(){
