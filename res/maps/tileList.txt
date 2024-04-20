@@ -9,7 +9,7 @@
 18 tileMap/grass2.png false
 19 tileMap/grass3.png false
 20 tileMap/grass4.png false
-21 tileMap/grass5.png false
+21 tileMap/grass5.png true
 22 tileMap/rock3.png true
 23 tileMap/rock4.png true
 24 tileMap/spike.png true

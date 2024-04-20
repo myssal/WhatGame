@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
     final public int maxScreenRow = 12;
     final public int screenWidth  = tileSize * maxScreenCol;
     final public int screenHeight  = tileSize * maxScreenRow;
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound soundEffect = new Sound();
@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
 
 
     //initialize constructor

@@ -42,9 +42,9 @@ public class Player extends Entity{
     //set default Player position
     public void setDefaultValue(){
 
-        worldX = gp.tileSize*8;
+        worldX = gp.tileSize*9;
         worldY = gp.tileSize*48;
-        speed = 10;
+        speed = 7;
         direction = "right";
     }
     public void getPlayerImage(){
@@ -142,10 +142,15 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int index){
-
+        //show dialogue when hit enter
         if (index != 999){
-            System.out.println("Hit npc");
+
+            if (gp.keyH.enterPressed == true){
+                gp.gameState = gp.dialogueState;
+                gp.npc[index].speak();
+            }
         }
+        gp.keyH.enterPressed =  false;
     }
 
     public void draw(Graphics2D graph2){

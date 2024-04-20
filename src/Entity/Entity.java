@@ -23,6 +23,8 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY; //store default collision area coordinates
     public boolean collisonOn = false;
     public int actionLockCounter = 0;
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -52,7 +54,7 @@ public class Entity {
         gp.collisionChecker.checkObject(this, false);
         gp.collisionChecker.checkPlayer(this);
 
-        //if false, player can move
+        //if false, can move
         if(collisonOn == false){
 
             switch (direction){
@@ -142,6 +144,34 @@ public class Entity {
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
+        }
+    }
+
+    public void speak(){
+        //read through dialogue
+        if (dialogues[dialogueIndex] == null){
+            dialogueIndex = 0;
+        }
+        gp.ui.currentDialogue = dialogues[dialogueIndex];
+        dialogueIndex++;
+
+        //make npc face player
+        switch (gp.player.direction){
+            case "up":
+                direction = "down";
+                break;
+
+            case "down":
+                direction = "up";
+                break;
+
+            case "right":
+                direction = "left";
+                break;
+
+            case "left":
+                direction = "right";
+                break;
         }
     }
 
