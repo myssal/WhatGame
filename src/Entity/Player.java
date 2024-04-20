@@ -49,14 +49,14 @@ public class Player extends Entity{
     }
     public void getPlayerImage(){
         //enhanced player image
-        up1 = setUp("player/boy_up_1");
-        up2 = setUp("player/boy_up_2");
-        down1 = setUp("player/boy_down_1");
-        down2 = setUp("player/boy_down_2");
-        right1 = setUp("player/boy_right_1");
-        right2 = setUp("player/boy_right_2");
-        left1 = setUp("player/boy_left_1");
-        left2 = setUp("player/boy_left_2");
+        up1 = setUp("entity/player/mainUp_1.png");
+        up2 = setUp("entity/player/mainUp_2.png");
+        down1 = setUp("entity/player/mainDown_1.png");
+        down2 = setUp("entity/player/mainDown_2.png");
+        right1 = setUp("entity/player/mainRight_1.png");
+        right2 = setUp("entity/player/mainRight_2.png");
+        left1 = setUp("entity/player/mainLeft_1.png");
+        left2 = setUp("entity/player/mainLeft_2.png");
 
     }
 
@@ -144,7 +144,8 @@ public class Player extends Entity{
     public void interactNPC(int index){
 
         if (index != 999){
-            System.out.println("Hit npc");
+
+            gp.gameState = gp.dialogueState;
         }
     }
 
