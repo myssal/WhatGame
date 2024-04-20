@@ -58,7 +58,7 @@ public class Test {
             e.printStackTrace();
         }
         for (Tile tileIt : TileList){
-            System.out.println(tileIt.tileOrder +  tileIt.tileName + tileIt.collision);
+            System.out.println(tileIt.tileOrder+tileIt.tileName+tileIt.collision);
         }
     }
 }

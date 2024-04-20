@@ -1,9 +1,24 @@
-0 grass false
-1 wall true
-2 water true
-3 earth false
-4 tree true
-5 sand false
-
-
-
+10 Mapping/bfloor.png false
+11 Mapping/bfloor1.png false
+12 Mapping/bfloor2.png false
+13 Mapping/bush.png false
+14 Mapping/bush2.png false
+15 Mapping/floor1.png false
+16 Mapping/floor2.png false
+17 Mapping/GRASS01.jpg false
+18 Mapping/GRASS02.png false
+29 Mapping/GRASS03.jpg false
+20 Mapping/GRASS04.jpg false
+21 Mapping/GRASS05.jpg false
+22 Mapping/rock3.jpg true
+23 Mapping/rock4.jpg true
+24 Mapping/spike.png true
+25 Mapping/tree.png true
+26 Mapping/water.png true
+27 Mapping/water1.png true
+28 Mapping/water2.png true
+29 Mapping/water3.png true
+30 Mapping/wrock.png true
+31 Mapping/wrock1.png true
+32 Mapping/wrock2.png true
+33 Mapping/wrock3.png true

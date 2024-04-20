@@ -23,10 +23,18 @@ public class TileManager {
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("maps/worldMap.txt");
+        loadMap("res/maps/completeMap.txt");
     }
 
-    public void getTileImage(){
+    public void getTileImage() {
+        try {
+            for (int i = 0; i < 10; i++){
+                tile[i] = new Tile(i, "Mapping/bfloor.png", false);
+                tile[i].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile[i].tileName));
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
         ArrayList<Tile> TileList = new ArrayList<Tile>();
         try {
@@ -44,11 +52,11 @@ public class TileManager {
         for (Tile tileIt : TileList){
                 try {
                     //fix to 10 later
-                    if (tileIt.tileOrder >= 0){
+                    //if (tileIt.tileOrder >= 10){
                         tile[tileIt.tileOrder] = new Tile(tileIt.tileOrder, tileIt.tileName, tileIt.collision);
-                        tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/" + tileIt.tileName +".png"));
+                        tile[tileIt.tileOrder].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tileIt.tileName));
                         //tile[tileIt.tileOrder].image = util.scaleImage(tile[tileIt.tileOrder].image, gp.tileSize, gp.tileSize);
-                    }
+                    //}
 
                 }catch (IOException e){
                     e.printStackTrace();
