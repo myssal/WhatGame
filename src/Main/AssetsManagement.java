@@ -1,6 +1,6 @@
 package Main;
 
-import Entity.NPCOldMan;
+import Entity.NPColdMan;
 import Object.Obj_Door;
 import Object.Obj_Key;
 import Object.Obj_Boost;
@@ -20,7 +20,7 @@ public class AssetsManagement {
     }
     public void setNPC(){
 
-        gp.npc[0] = new NPCOldMan(gp);
+        gp.npc[0] = new NPColdMan(gp);
         gp.npc[0].worldX = gp.tileSize * 21;
         gp.npc[0].worldY = gp.tileSize * 21;
 
