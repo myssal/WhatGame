@@ -51,8 +51,8 @@ public class Player extends Entity{
         //enhanced player image
         up1 = setUp("player/boy_up_1");
         up2 = setUp("player/boy_up_2");
-        down1 = setUp("player/idle-down1");
-        down2 = setUp("player/idle-down2_10");
+        down1 = setUp("player/boy_down_1");
+        down2 = setUp("player/boy_down_2");
         right1 = setUp("player/boy_right_1");
         right2 = setUp("player/boy_right_2");
         left1 = setUp("player/boy_left_1");
