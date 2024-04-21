@@ -66,14 +66,14 @@ public class Player extends Entity{
 
     public void getPlayerAttackImage(){
         //placeholder image, change later
-        attackUp1 = setUp("entity/npc/sageB/sageUp_1");
-        attackUp2 = setUp("entity/npc/sageB/sageUp_2");
-        attackDown1 = setUp("entity/npc/sageB/sageDown_1");
-        attackDown2 = setUp("entity/npc/sageB/sageDown_2");
-        attackRight1 = setUp("entity/npc/sageB/sageRight_1");
-        attackRight2 = setUp("entity/npc/sageB/sageRight_2");
-        attackLeft1 = setUp("entity/npc/sageB/sageLeft_1");
-        attackLeft2 = setUp("entity/npc/sageB/sageLeft_2");
+        attackUp1 = setUp("entity/player/mainAttackUp_1");
+        attackUp2 = setUp("entity/player/mainAttackUp_2");
+        attackDown1 = setUp("entity/player/mainAttackDown_1");
+        attackDown2 = setUp("entity/player/mainAttackDown_2");
+        attackRight1 = setUp("entity/player/mainAttackRight_1");
+        attackRight2 = setUp("entity/player/mainAttackRight_2");
+        attackLeft1 = setUp("entity/player/mainAttackLeft_1");
+        attackLeft2 = setUp("entity/player/mainAttackLeft_2");
 
     }
     public void update(){
