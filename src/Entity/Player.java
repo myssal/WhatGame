@@ -313,7 +313,15 @@ public class Player extends Entity{
             //change opacity of player sprite
             graph2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
         }
-        graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        //optimize later
+        if (image == attackDown1 || image == attackDown2 || image == attackUp1 || image == attackUp2){
+            graph2.drawImage(image, screenX, screenY, gp.tileSize * 2, gp.tileSize, null);
+        } else if (image == attackLeft1 || image == attackLeft2 || image == attackRight1 || image == attackRight2) {
+            graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize * 2, null);
+        }else {
+            graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        }
+
         //reset opacity
         graph2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
