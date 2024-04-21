@@ -55,11 +55,10 @@ public class AssetsManagement {
         try {
 
             int mobNum;
-            String pathName = "";
             Scanner mobInput = new Scanner(new File("res/maps/mobList.txt"));
             while (mobInput.hasNext()){
                 mobNum = mobInput.nextInt();
-                gp.mob[mobNum] = new Obj_Template(gp);
+                gp.mob[mobNum] = new Mob_Template(gp);
                 gp.mob[mobNum].name = mobInput.next();
                 gp.mob[mobNum].worldX = mobInput.nextInt() * gp.tileSize;
                 gp.mob[mobNum].worldY = mobInput.nextInt() * gp.tileSize;

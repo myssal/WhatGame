@@ -107,11 +107,11 @@ public class UI {
             int y = gp.tileSize * 3;
 
             //shadow
-            Color titleColorShadow = new Color(155, 66, 6, 255);
+            Color titleColorShadow = new Color(56, 56, 56, 255);
             graph2.setColor(titleColorShadow);
             graph2.drawString(gameTitle, x + 4, y + 4);
             //main title
-            Color titleColor = new Color(128, 50, 32);
+            Color titleColor = new Color(255, 255, 255);
             graph2.setColor(titleColor);
             graph2.drawString(gameTitle, x, y);
 
@@ -145,29 +145,29 @@ public class UI {
                 e.printStackTrace();
             }
             //tutorial screen
-            Color tutorialColorShadow = new Color(255, 21, 21, 255);
+            Color tutorialColorShadow = new Color(255, 255, 255, 255);
             graph2.setColor(tutorialColorShadow);
             graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,40F));
             String mainText = "TUTORIAL";
             int xMainTitle = getXCenteredText(mainText, graph2);
             graph2.drawString(mainText, xMainTitle, gp.tileSize * 2);
-
             //keyboard tutorial
             graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,30F));
             graph2.drawString("Move: WASD or arrow key", gp.tileSize * 5, gp.tileSize * 4);
             graph2.drawString("Attack: Enter     Pause: P", gp.tileSize * 5, gp.tileSize * 5);
             graph2.drawString("Trigger Dialogue: Enter", gp.tileSize * 5, gp.tileSize * 6);
+            graph2.drawString("Pick up object: E", gp.tileSize * 5, gp.tileSize * 7);
             int xBack = getXCenteredText("Back to Title Screen", graph2);
             int xUp = getXCenteredText("To the Game", graph2);
-            graph2.drawString("Back to Title Screen", xBack, gp.tileSize * 10);
 
             //choice
+            graph2.drawString("Back to Title Screen", xBack, gp.tileSize * 9);
             if (commandNum == 0){
-                graph2.drawString(">", xBack - gp.tileSize, gp.tileSize * 10 + 4);
+                graph2.drawString(">", xBack - gp.tileSize, gp.tileSize * 9 + 4);
             }
-            graph2.drawString("To the Game", xUp, gp.tileSize * 11);
+            graph2.drawString("To the Game", xUp, gp.tileSize * 10);
             if (commandNum == 1){
-                graph2.drawString(">", xUp - gp.tileSize, gp.tileSize * 11 + 4);
+                graph2.drawString(">", xUp - gp.tileSize, gp.tileSize * 10 + 4);
             }
 
             

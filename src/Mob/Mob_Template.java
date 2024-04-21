@@ -13,7 +13,7 @@ public class Mob_Template extends Entity {
     public Mob_Template(GamePanel gp){
         super(gp);
         HP = maxHP;
-        solidArea = new Rectangle(3, 23, 48, 25);
+        solidArea = new Rectangle(3, 40, 42, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         collision = true;

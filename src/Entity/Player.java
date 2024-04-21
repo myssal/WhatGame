@@ -27,7 +27,7 @@ public class Player extends Entity{
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         //setting the collision area
-        solidArea = new Rectangle(5, 5, 38, 40);
+        solidArea = new Rectangle(8, 0, 32, 48);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
