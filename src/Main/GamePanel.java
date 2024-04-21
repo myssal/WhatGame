@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this,keyH);
     public Entity npc[] = new Entity[5];
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public ObjectTmp obj[] = new ObjectTmp[10]; //create an object arrays to store the object that'll appear in game
+    public ObjectTmp obj[] = new ObjectTmp[20]; //create an object arrays to store the object that'll appear in game
     public AssetsManagement aManagement = new AssetsManagement(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);

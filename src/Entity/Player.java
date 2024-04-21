@@ -49,7 +49,7 @@ public class Player extends Entity{
 
         //status
         maxHP = 6;
-        HP = maxHP;
+        HP = maxHP ;
 
     }
     public void getPlayerImage(){

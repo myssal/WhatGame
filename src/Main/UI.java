@@ -96,7 +96,7 @@ public class UI {
             try {
 
                 BufferedImage titleImage;
-                titleImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/titleScreen.jpg"));
+                titleImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/start.png"));
                 graph2.drawImage(titleImage, 0, 0, gp.tileSize * 16, gp.tileSize * 12, null);
             }catch (IOException e){
                 e.printStackTrace();
@@ -109,11 +109,11 @@ public class UI {
             int y = gp.tileSize * 3;
 
             //shadow
-            Color titleColorShadow = new Color(21, 146, 182, 255);
+            Color titleColorShadow = new Color(155, 66, 6, 255);
             graph2.setColor(titleColorShadow);
             graph2.drawString(gameTitle, x + 4, y + 4);
             //main title
-            Color titleColor = new Color(86, 175, 217);
+            Color titleColor = new Color(128, 50, 32);
             graph2.setColor(titleColor);
             graph2.drawString(gameTitle, x, y);
 
@@ -138,6 +138,14 @@ public class UI {
             }
         } else if (titleScreenState == 1) {
 
+            try {
+
+                BufferedImage tutorialBGImage;
+                tutorialBGImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("title/tutorial.png"));
+                graph2.drawImage(tutorialBGImage, 0, 0, gp.tileSize * 16, gp.tileSize * 12, null);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
             //tutorial screen
             graph2.setColor(Color.gray);
             graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,40F));
@@ -203,15 +211,13 @@ public class UI {
     //Hp hud
     public void drawPlayerHP(){
 
-        gp.player.HP = 5;
-
         int x = gp.tileSize / 2;
         int y = gp.tileSize / 2;
         int i = 0;
 
         //max hp display
         while (i < gp.player.maxHP / 2){
-            graph2.drawImage(heartFull, x, y, gp.tileSize, gp.tileSize, null);
+            graph2.drawImage(heartBlank, x, y, gp.tileSize, gp.tileSize, null);
             i++;
             x+= gp.tileSize;
         }
