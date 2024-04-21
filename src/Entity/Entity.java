@@ -17,16 +17,19 @@ public class Entity {
     public boolean invicible = false;
     public int invicibleCounter = 0;
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2; //BufferedImage describes an images with an accessible buffer of image data.
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down"; //decide which direction entity will face when spawn in the screen
 
     public int spriteCounter = 0; //variable to create a "loop" animation
     public int spriteNum = 1; //decide which sprite to use in "loop" animation
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); //create collision area for entity
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY; //store default collision area coordinates
     public boolean collisonOn = false;
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
+    boolean attacking = false;
 
     //character status
     public int maxHP;
@@ -111,6 +114,15 @@ public class Entity {
             spriteCounter = 0;
         }
 
+        //set time invicible
+        if (invicible){
+            invicibleCounter++;
+            if (invicibleCounter > 30){
+                invicible = false;
+                invicibleCounter = 0;
+            }
+        }
+
     };
     public void draw(Graphics2D g2){
         int screenX = worldX - gp.player.worldX + gp.player.screenX ;
@@ -125,42 +137,29 @@ public class Entity {
 
             switch (direction) {
                 case "up":
-                    if(spriteNum == 1){
-                        image = up1;
-                    }
-                    if(spriteNum == 2){
-                        image = up2;
-                    }
+                    if(spriteNum == 1) image = up1;
+                    if(spriteNum == 2) image = up2;
                     break;
 
                 case "down":
-                    if(spriteNum == 1){
-                        image = down1;
-                    }
-                    if(spriteNum == 2){
-                        image = down2;
-                    }
+                    if(spriteNum == 1) image = down1;
+                    if(spriteNum == 2) image = down2;
                     break;
 
                 case "left":
-                    if(spriteNum == 1){
-                        image = left1;
-                    }
-                    if(spriteNum == 2){
-                        image = left2;
-                    }
+                    if(spriteNum == 1) image = left1;
+                    if(spriteNum == 2) image = left2;
                     break;
 
                 case "right":
-                    if(spriteNum == 1){
-                        image = right1;
-                    }
-                    if(spriteNum == 2){
-                        image = right2;
-                    }
+                    if(spriteNum == 1) image = right1;
+                    if(spriteNum == 2) image = right2;
                     break;
                 default:
                     break;
+            }
+            if (invicible){
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,  0.6f));
             }
 
             if (entityType.contentEquals("Object")){
@@ -168,7 +167,7 @@ public class Entity {
             }else {
                 g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
-
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         }
     }

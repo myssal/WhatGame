@@ -27,17 +27,16 @@ public class Player extends Entity{
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         //setting the collision area
-        solidArea = new Rectangle();
-        solidArea.x = 10;
-        solidArea.y = 16;
+        solidArea = new Rectangle(10, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.height = 32;
-        solidArea.width = 32;
+
+        attackArea = new Rectangle(36, 36);
 
 
         setDefaultValue();
         getPlayerImage();
+        getPlayerAttackImage();
     }
     //set default Player position
     public void setDefaultValue(){
@@ -65,9 +64,23 @@ public class Player extends Entity{
 
     }
 
+    public void getPlayerAttackImage(){
+        //placeholder image, change later
+        attackUp1 = setUp("entity/npc/sageB/sageUp_1");
+        attackUp2 = setUp("entity/npc/sageB/sageUp_2");
+        attackDown1 = setUp("entity/npc/sageB/sageDown_1");
+        attackDown2 = setUp("entity/npc/sageB/sageDown_2");
+        attackRight1 = setUp("entity/npc/sageB/sageRight_1");
+        attackRight2 = setUp("entity/npc/sageB/sageRight_2");
+        attackLeft1 = setUp("entity/npc/sageB/sageLeft_1");
+        attackLeft2 = setUp("entity/npc/sageB/sageLeft_2");
+
+    }
     public void update(){
-        
-        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
+        if (attacking){
+            attackingP();
+        }
+        else if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed){
 
             if(keyH.upPressed){
                 direction = "up";
@@ -163,13 +176,19 @@ public class Player extends Entity{
 
     public void interactNPC(int index){
         //show dialogue when hit enter
-        if (index != 999){
+        if (gp.keyH.enterPressed){
+            if (index != 999){
 
-            if (gp.keyH.enterPressed == true){
-                gp.gameState = gp.dialogueState;
-                gp.npc[index].speak();
+                if (gp.keyH.enterPressed == true){
+                    gp.gameState = gp.dialogueState;
+                    gp.npc[index].speak();
+                }
+            }
+            else {
+                if (gp.keyH.enterPressed) attacking = true;
             }
         }
+
     }
 
     public void contactMonster(int mobIndex){
@@ -183,44 +202,106 @@ public class Player extends Entity{
 
         }
     }
+
+    public void attackingP(){
+        //create attack animation
+        spriteCounter++;
+        if (spriteCounter <= 10) spriteNum = 1;
+        if (spriteCounter > 10 && spriteCounter <= 20) {
+            spriteNum = 2;
+
+            //save player current coordinates
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            //adjust attack area
+            switch (direction){
+                case "up": worldY -= attackArea.height; break;
+                case "down": worldY += attackArea.height; break;
+                case "left": worldX -= attackArea.width; break;
+                case "right": worldX += attackArea.width; break;
+            }//attack area update
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            //check mob collision
+            int mobIndex = gp.collisionChecker.checkEntity(this, gp.mob);
+            damageMonster(mobIndex);
+
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+        }
+        if (spriteCounter > 20){
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
+        }
+    }
+
+    void damageMonster(int mobIndex){
+        if (mobIndex != 999){
+            gp.mob[mobIndex].HP -= 1;
+            gp.mob[mobIndex].invicible = true;
+
+            if (gp.mob[mobIndex].HP < 0){
+                //mob die
+                gp.mob[mobIndex] = null;
+            }
+        }
+    }
+
     public void draw(Graphics2D graph2){
+        //need to use another temp coordinates to display correctly position for bigger sprite
 
         BufferedImage image = null;
 
         switch (direction) {
             case "up":
-                if(spriteNum == 1){
-                    image = up1;
+                if (!attacking) {
+                    if (spriteNum == 1) image = up1;
+                    if (spriteNum == 2) image = up2;
                 }
-                if(spriteNum == 2){
-                    image = up2;
+                if (attacking){
+                    if (spriteNum == 1) image = attackUp1;
+                    if (spriteNum == 2) image = attackUp2;
                 }
                 break;
-            
+
             case "down":
-                if(spriteNum == 1){
-                    image = down1;
+                if (!attacking) {
+                    if (spriteNum == 1) image = down1;
+                    if (spriteNum == 2) image = down2;
                 }
-                if(spriteNum == 2){
-                    image = down2;
+                if (attacking){
+                    if (spriteNum == 1) image = attackDown1;
+                    if (spriteNum == 2) image = attackDown2;
                 }
+
                 break;
                 
             case "left":
-                if(spriteNum == 1){
-                    image = left1;
+                if (!attacking) {
+                    if (spriteNum == 1) image = left1;
+                    if (spriteNum == 2) image = left2;
                 }
-                if(spriteNum == 2){
-                    image = left2;
+                if (attacking){
+                    if (spriteNum == 1) image = attackLeft1;
+                    if (spriteNum == 2) image = attackLeft2;
                 }
                 break;
 
             case "right":
-                if(spriteNum == 1){
-                    image = right1;
+                if (!attacking) {
+                    if (spriteNum == 1) image = right1;
+                    if (spriteNum == 2) image = right2;
                 }
-                if(spriteNum == 2){
-                    image = right2;
+                if (attacking){
+                    if (spriteNum == 1) image = attackRight1;
+                    if (spriteNum == 2) image = attackRight2;
                 }
                 break;    
             default:
