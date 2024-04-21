@@ -3,7 +3,13 @@ package Main;
 import Entity.NPCSage;
 import Entity.NPCSageE;
 import Mob.Slime;
-import Object.Obj_HpPotion;
+import Object.*;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.util.Scanner;
 
 public class AssetsManagement {
 
@@ -15,9 +21,23 @@ public class AssetsManagement {
 
     public void setObject(){
         //setup object in world map
-        gp.obj[0] = new Obj_HpPotion(gp);
-        gp.obj[0].worldX = gp.tileSize * 29;
-        gp.obj[0].worldY = gp.tileSize * 30;
+        //optimize object spawn
+        try {
+
+            int objNum;
+            String pathName = "";
+            Scanner objectInput = new Scanner(new File("res/maps/objectList.txt"));
+            while (objectInput.hasNext()){
+                objNum = objectInput.nextInt();
+                gp.obj[objNum] = new Obj_Template(gp);
+                gp.obj[objNum].name = objectInput.next();
+                gp.obj[objNum].down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream(objectInput.next()));
+                gp.obj[objNum].worldX = objectInput.nextInt() * gp.tileSize;
+                gp.obj[objNum].worldY = objectInput.nextInt() * gp.tileSize;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
     public void setNPC(){

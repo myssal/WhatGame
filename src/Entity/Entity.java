@@ -163,7 +163,7 @@ public class Entity {
             }
 
             if (entityType.contentEquals("Object")){
-                g2.drawImage(image, screenX + 5, screenY + 5, 20, 20, null);
+                g2.drawImage(image, screenX + 5, screenY + 5, 30, 30, null);
             }else {
                 g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }

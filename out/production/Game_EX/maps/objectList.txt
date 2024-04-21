@@ -1,22 +1,22 @@
-1 object/weapon/sword1.png 19 49
-2 object/weapon/shield_wood.png 30 30
-3 object/potion/0.5health.png 29 30
-4 object/potion/0.5health.png 31 30
-5 object/potion/0.5health.png 103 50
-6 object/potion/0.5health.png 79 36
-7 object/potion/0.5shield.png 73 43
-8 object/potion/0.5shield.png 102 50
-9 object/potion/1health.png 69 51
-10 object/potion/1health.png 89 33
-11 object/potion/1shield.png 70 51
-12 object/potion/1shield.png 104 41
-13 object/potion/1shield.png 102 26
-14 object/potion/1shield.png 104 26
-15 object/chest.png 51 27
-16 object/chest.png 90 41
-17 object/chest.png 88 9
-18 object/chest.png 89 10
-19 object/chest.png 90 10
-20 object/chest.png 91 10
-21 object/chest.png 92 10
-22 object/chest.png 93 9
+0 Chest object/chest.png 93 9
+1 Sword object/weapon/sword.png 19 49
+2 Shield object/weapon/shield.png 30 30
+3 HpPotion object/potion/1health.png 29 30
+4 HpPotion object/potion/1health.png 31 30
+5 HpPotion object/potion/1health.png 103 50
+6 HpPotion object/potion/1health.png 79 36
+7 AttackPotion object/potion/1attack.png 73 43
+8 AttackPotion object/potion/1attack.png 102 50
+9 HpPotion object/potion/1health.png 69 51
+10 HpPotion object/potion/1health.png 89 33
+11 AttackPotion object/potion/1attack.png 70 51
+12 AttackPotion object/potion/1attack.png 104 41
+13 AttackPotion object/potion/1attack.png 102 26
+14 AttackPotion object/potion/1attack.png 104 26
+15 Chest object/chest.png 51 27
+16 Chest object/chest.png 90 41
+17 Chest object/chest.png 88 9
+18 Chest object/chest.png 89 10
+19 Chest object/chest.png 90 10
+20 Chest object/chest.png 91 10
+21 Chest object/chest.png 92 10

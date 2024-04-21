@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.Entity;
 import Tile.Tile;
 
 import javax.imageio.ImageIO;
@@ -43,18 +44,22 @@ public class Test {
         for (Tile.TileOriginal i : TileList){
             System.out.println(i.tileOrder+i.tileName);
         }
-*/      int[][] mapTileNum = new int[100][50];
-        Scanner mapScanner = new Scanner(new File("res/maps/completeMap.txt"));
-        int col = 0, row = 0;
-        while (mapScanner.hasNext()){
-            mapTileNum[col][row] = mapScanner.nextInt();
-            col++;
-            if (col == 100){
-                row ++;
-                col = 0;
+
+*/      int ObjectNum, ObjectX, ObjectY;
+        String ObjectName;
+        Entity[] obj = new Entity[30];
+        String test;
+        try {
+            Scanner ObjectInput = new Scanner(new File("res/maps/objectList.txt"));
+            while (ObjectInput.hasNext()){
+                ObjectNum = ObjectInput.nextInt();
+                Class classTypeObj = Class.forName(ObjectInput.next());
+                System.out.println();
+                ObjectX = ObjectInput.nextInt();
+                ObjectY = ObjectInput.nextInt();
+
             }
-        }
-        System.out.println(mapTileNum[0][49]);
+        }catch (Exception e){}
 
     }
 }

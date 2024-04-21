@@ -7,15 +7,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public class Obj_HpPotion extends Entity {
+public class Obj_Shield extends Entity {
 
-    public Obj_HpPotion(GamePanel gp){
+    public Obj_Shield(GamePanel gp){
 
         super(gp);
-        name = "HpPotion";
+        name = "Shield";
         entityType = "Object";
         try {
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("object/potion/1health.png"));
+            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("object/weapon/shield.png"));
         }catch (IOException e){
             e.printStackTrace();
         }

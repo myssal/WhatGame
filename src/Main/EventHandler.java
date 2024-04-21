@@ -45,9 +45,10 @@ public class EventHandler {
 
         if (canTouchEvent){
             //template
+            /*
             if (hit(11, 48, "any")){
                 damagePit(11, 48, gp.dialogueState);
-            }
+            }*/
         }
 
     }
