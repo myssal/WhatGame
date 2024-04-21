@@ -83,6 +83,8 @@ public class UI {
     public void drawPauseScreen(){
 
         graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 80));
+        Color pause = new Color(44, 44, 44, 239);
+        graph2.setColor(pause);
         String gameState = "PAUSE";
         int x = getXCenteredText(gameState, graph2);
         int y = gp.screenHeight / 2;

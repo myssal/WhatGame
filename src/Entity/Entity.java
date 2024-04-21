@@ -13,7 +13,9 @@ public class Entity {
     GamePanel gp;
     public int worldX, worldY; //coordinates of entity relative to world map
     public int speed;
-
+    public String entityType = "Character";
+    public boolean invicible = false;
+    public int invicibleCounter = 0;
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2; //BufferedImage describes an images with an accessible buffer of image data.
     public String direction = "down"; //decide which direction entity will face when spawn in the screen
 
@@ -61,7 +63,17 @@ public class Entity {
         collisonOn = false;
         gp.collisionChecker.checkTile(this);
         gp.collisionChecker.checkObject(this, false);
-        gp.collisionChecker.checkPlayer(this);
+        boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
+        gp.collisionChecker.checkEntity(this, gp.npc);
+        gp.collisionChecker.checkEntity(this, gp.mob);
+
+        //check if this is monster or not to deal dmg to player
+        if (this.entityType.contentEquals("Mob") && contactPlayer == true){
+            if(gp.player.invicible == false){
+                gp.player.HP -= 1;
+                gp.player.invicible = true;
+            }
+        }
 
         //if false, can move
         if(collisonOn == false){
@@ -151,7 +163,7 @@ public class Entity {
                     break;
             }
 
-            if (name == "Hp Potion"){
+            if (entityType.contentEquals("Object")){
                 g2.drawImage(image, screenX + 5, screenY + 5, 20, 20, null);
             }else {
                 g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);

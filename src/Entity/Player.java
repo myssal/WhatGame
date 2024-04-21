@@ -98,6 +98,10 @@ public class Player extends Entity{
             int npcChecker = gp.collisionChecker.checkEntity(this, gp.npc);
             interactNPC(npcChecker);
 
+            //check monster collision
+            int mobChecker = gp.collisionChecker.checkEntity(this, gp.mob);
+            contactMonster(mobChecker);
+
             //check event collision
             gp.eHandler.checkEvent();
             gp.keyH.enterPressed = false;
@@ -139,7 +143,14 @@ public class Player extends Entity{
             }
         }
 
-        
+        //set time invicible
+        if (invicible){
+            invicibleCounter++;
+            if (invicibleCounter > 60){
+                invicible = false;
+                invicibleCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int index){
@@ -161,6 +172,17 @@ public class Player extends Entity{
         }
     }
 
+    public void contactMonster(int mobIndex){
+
+        if (mobIndex != 999){
+
+            if (invicible == false){
+                HP -= 1;
+                invicible = true;
+            }
+
+        }
+    }
     public void draw(Graphics2D graph2){
 
         BufferedImage image = null;
@@ -204,6 +226,14 @@ public class Player extends Entity{
             default:
                 break;
         }
+
+        if (invicible){
+            //effect invicible
+            //change opacity of player sprite
+            graph2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
+        }
         graph2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        //reset opacity
+        graph2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }

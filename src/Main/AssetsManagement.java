@@ -2,6 +2,7 @@ package Main;
 
 import Entity.NPCSage;
 import Entity.NPCSageE;
+import Mob.Slime;
 import Object.Obj_HpPotion;
 
 public class AssetsManagement {
@@ -29,5 +30,11 @@ public class AssetsManagement {
         gp.npc[1].worldX = gp.tileSize * 100;
         gp.npc[1].worldY = gp.tileSize * 20;
 
+    }
+
+    public void setMob(){
+        gp.mob[0] = new Slime(gp);
+        gp.mob[0].worldX = gp.tileSize * 10;
+        gp.mob[0].worldY = gp.tileSize * 50;
     }
 }

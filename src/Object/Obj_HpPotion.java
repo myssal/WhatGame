@@ -11,6 +11,7 @@ public class Obj_HpPotion extends Entity {
 
         super(gp);
         name = "Hp Potion";
+        entityType = "Object";
         down1 = setUp("object/potion/0.5health");
         solidArea = new Rectangle(5, 5, 20, 20);
         collision = true;

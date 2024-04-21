@@ -47,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity npc[] = new Entity[5];
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Entity obj[] = new Entity[30]; //create an object arrays to store the object that'll appear in game
+    public Entity mob[] = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>(); //store all entities
     //sort the order to decide the render order with the one has lowest worldY comes to 0
 
@@ -78,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
         //set up object in the map
         aManagement.setObject();
         aManagement.setNPC();
+        aManagement.setMob();
         playMusic(0);
         stopMusic();
         gameState = titleState;
@@ -137,6 +139,12 @@ public class GamePanel extends JPanel implements Runnable{
                     npc[i].update();
                 }
             }
+            //mob
+            for (int i = 0; i < mob.length; i++){
+                if (mob[i] != null){
+                    mob[i].update();
+                }
+            }
         }
 
         if (gameState == pauseState){
@@ -179,6 +187,11 @@ public class GamePanel extends JPanel implements Runnable{
                     entityList.add(obj[i]);
                 }
             }
+            for (int i = 0; i < mob.length; i++){
+                if (mob[i] != null){
+                    entityList.add(mob[i]);
+                }
+            }
             //sort entityList
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
@@ -192,9 +205,7 @@ public class GamePanel extends JPanel implements Runnable{
                 entityList.get(i).draw(graph2);
             }
             //empty entityList
-            for (int i = 0; i < entityList.size(); i++){
-                entityList.remove(i);
-            }
+            entityList.clear();
 
             //ui
             ui.draw(graph2);

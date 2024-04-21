@@ -80,7 +80,7 @@ public class KeyHandler implements KeyListener {
 
         }
         //play state
-        if (gp.gameState == gp.playState){
+        else if (gp.gameState == gp.playState){
 
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 upPressed = true;
@@ -106,10 +106,9 @@ public class KeyHandler implements KeyListener {
                 else if (debugPressed == false) debugPressed = true;
             }
         }
-
         //switch pause/play state
         else if (gp.gameState == gp.pauseState){
-            if (code == KeyEvent.VK_1){
+            if (code == KeyEvent.VK_P){
                 gp.gameState = gp.playState;
             }
         }
