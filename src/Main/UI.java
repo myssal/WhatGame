@@ -45,10 +45,6 @@ public class UI {
 
     }
 
-    public void showMessage(String text){
-        message = text;
-        messageOn = true;
-    }
     public void draw(Graphics2D g2){
         graph2 = g2;
 
@@ -149,17 +145,18 @@ public class UI {
                 e.printStackTrace();
             }
             //tutorial screen
-            graph2.setColor(Color.gray);
+            Color tutorialColorShadow = new Color(255, 21, 21, 255);
+            graph2.setColor(tutorialColorShadow);
             graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,40F));
-            String mainText = "Tutorial";
+            String mainText = "TUTORIAL";
             int xMainTitle = getXCenteredText(mainText, graph2);
             graph2.drawString(mainText, xMainTitle, gp.tileSize * 2);
 
             //keyboard tutorial
-            graph2.setFont(graph2.getFont().deriveFont(Font.PLAIN,30F));
-            graph2.drawString("Move: WASD or arrow key", gp.tileSize * 4, gp.tileSize * 4);
-            graph2.drawString("Attack:      Pause: P", gp.tileSize * 4, gp.tileSize * 5);
-            graph2.drawString("Attack:      Pause: P", gp.tileSize * 4, gp.tileSize * 5);
+            graph2.setFont(graph2.getFont().deriveFont(Font.BOLD,30F));
+            graph2.drawString("Move: WASD or arrow key", gp.tileSize * 5, gp.tileSize * 4);
+            graph2.drawString("Attack: Enter     Pause: P", gp.tileSize * 5, gp.tileSize * 5);
+            graph2.drawString("Trigger Dialogue: Enter", gp.tileSize * 5, gp.tileSize * 6);
             int xBack = getXCenteredText("Back to Title Screen", graph2);
             int xUp = getXCenteredText("To the Game", graph2);
             graph2.drawString("Back to Title Screen", xBack, gp.tileSize * 10);

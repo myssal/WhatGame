@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity npc[] = new Entity[5];
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Entity obj[] = new Entity[30]; //create an object arrays to store the object that'll appear in game
-    public Entity mob[] = new Entity[20];
+    public Entity mob[] = new Entity[35];
     ArrayList<Entity> entityList = new ArrayList<>(); //store all entities
     //sort the order to decide the render order with the one has lowest worldY comes to 0
 

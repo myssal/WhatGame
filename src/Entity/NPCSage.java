@@ -32,10 +32,10 @@ public class NPCSage extends Entity{
     //set dialogue for npc
     public void setDialogue(){
 
-        dialogues[0] = "Asegrgrgree";
-        dialogues[1] = "Who tf are you\nGet tf out of here";
-        dialogues[2] = "*Screaming in weird languages*";
-        dialogues[3] = "Err, close enough";
+        dialogues[0] = "Hello and welcome to the island.";
+        dialogues[1] = "It has been a long time since i saw a people here.";
+        dialogues[2] = "Go to the west, the treasures await you.";
+        dialogues[3] = "Good luck.";
     }
 
     //simple AI setup for npc

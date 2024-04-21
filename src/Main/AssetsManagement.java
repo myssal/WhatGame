@@ -2,9 +2,8 @@ package Main;
 
 import Entity.NPCSage;
 import Entity.NPCSageE;
-import Mob.Slime;
 import Object.*;
-
+import Mob.*;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
@@ -47,14 +46,26 @@ public class AssetsManagement {
         gp.npc[0].worldY = gp.tileSize * 46;
 
         gp.npc[1] = new NPCSageE(gp);
-        gp.npc[1].worldX = gp.tileSize * 100;
-        gp.npc[1].worldY = gp.tileSize * 20;
+        gp.npc[1].worldX = gp.tileSize * 103;
+        gp.npc[1].worldY = gp.tileSize * 28;
 
     }
 
     public void setMob(){
-        gp.mob[0] = new Slime(gp);
-        gp.mob[0].worldX = gp.tileSize * 10;
-        gp.mob[0].worldY = gp.tileSize * 50;
+        try {
+
+            int mobNum;
+            String pathName = "";
+            Scanner mobInput = new Scanner(new File("res/maps/mobList.txt"));
+            while (mobInput.hasNext()){
+                mobNum = mobInput.nextInt();
+                gp.mob[mobNum] = new Obj_Template(gp);
+                gp.mob[mobNum].name = mobInput.next();
+                gp.mob[mobNum].worldX = mobInput.nextInt() * gp.tileSize;
+                gp.mob[mobNum].worldY = mobInput.nextInt() * gp.tileSize;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

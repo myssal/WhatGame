@@ -12,8 +12,13 @@ public class NPCSageE extends Entity{
         direction = "down";
         speed = 1;
         getSageEImage();
+        setDialogue();
     }
+    public void setDialogue(){
 
+        dialogues[0] = "So you finally got here.";
+        dialogues[1] = "May you find the wished treasures here.";
+    }
     public void getSageEImage(){
 
         up1 = setUp("entity/npc/sageE/sageUp_1");
@@ -30,19 +35,26 @@ public class NPCSageE extends Entity{
     //simple AI setup for npc
     public void setAction(){
 
-        actionLockCounter ++;
+        collisonOn = false;
+        gp.collisionChecker.checkTile(this);
+        gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkPlayer(this);
 
-        if (actionLockCounter == 120){
+        spriteCounter++;
+        if (spriteCounter>30) {
+            if (spriteNum == 1) {
 
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            if (i <= 25) direction = "up";
-            if (i > 25 && i <= 50) direction = "down";
-            if (i > 50 && i <= 75) direction = "left";
-            if (i > 75 && i <= 100) direction = "right";
-
-            actionLockCounter = 0;
+                spriteNum = 2;
+            }
+            else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
         }
 
+    }
+    public void speak(){
+        //for customization
+        super.speak();
     }
 }

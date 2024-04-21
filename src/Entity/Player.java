@@ -41,7 +41,7 @@ public class Player extends Entity{
     //set default Player position
     public void setDefaultValue(){
 
-        worldX = gp.tileSize*9;
+        worldX = gp.tileSize*8;
         worldY = gp.tileSize*48;
         speed = 7;
         direction = "right";
@@ -82,6 +82,7 @@ public class Player extends Entity{
         }
         else if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed){
 
+
             if(keyH.upPressed){
                 direction = "up";
 
@@ -107,7 +108,7 @@ public class Player extends Entity{
             int objIndex = gp.collisionChecker.checkObject(this,true);
             pickUpObject(objIndex); //call method handling objects
 
-            //check object collision
+            //check npc collision
             int npcChecker = gp.collisionChecker.checkEntity(this, gp.npc);
             interactNPC(npcChecker);
 
@@ -168,10 +169,83 @@ public class Player extends Entity{
 
     public void pickUpObject(int index){
         //set up interaction with object
-        if (index != 999){
+        if (gp.keyH.pickUpPressed){
+            if (index != 999){
+                //handle each type of object.
+                switch (gp.obj[index].name){
+                    case "Chest":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.ui.currentDialogue = "You got a treasure chest!";
+                            gp.gameState = gp.dialogueState;
+                            gp.ui.drawDialogueWindow();
+                            if (gp.keyH.enterPressed){
+                                gp.gameState = gp.playState;
+                            }
+                            gp.obj[index] = null;
 
+                        }
+                        break;
+                    }
+                    case "Sword":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.ui.currentDialogue = "You got a sword! Now you can attack the monster.";
+                            gp.gameState = gp.dialogueState;
+                            gp.ui.drawDialogueWindow();
+                            if (gp.keyH.enterPressed){
+                                gp.gameState = gp.playState;
+                            }
+                            gp.obj[index] = null;
 
+                        }
+                        break;
+                    }
+                    case "Shield":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.ui.currentDialogue = "A shield to help increase your defense";
+                            //actually haven't implemented yet lol
+                            gp.gameState = gp.dialogueState;
+                            gp.ui.drawDialogueWindow();
+                            if (gp.keyH.enterPressed){
+                                gp.gameState = gp.playState;
+                            }
+                            gp.obj[index] = null;
+
+                        }
+                        break;
+                    }
+                    case "HpPotion":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.ui.currentDialogue = "You healed 1 HP!";
+                            HP += 1;
+                            gp.gameState = gp.dialogueState;
+                            gp.ui.drawDialogueWindow();
+                            if (gp.keyH.enterPressed){
+                                gp.gameState = gp.playState;
+                            }
+                            gp.obj[index] = null;
+
+                        }
+                        break;
+                    }
+                    case "AttackPotion":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.ui.currentDialogue = "A small boost to your object";
+                            //one more thing that haven't got implemented yet lol
+                            gp.gameState = gp.dialogueState;
+                            gp.ui.drawDialogueWindow();
+                            if (gp.keyH.enterPressed){
+                                gp.gameState = gp.playState;
+                            }
+                            gp.obj[index] = null;
+
+                        }
+                        break;
+                    }
+                }
+
+            }
         }
+
     }
 
     public void interactNPC(int index){

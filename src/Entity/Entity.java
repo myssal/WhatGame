@@ -16,6 +16,7 @@ public class Entity {
     public String entityType = "Character";
     public boolean invicible = false;
     public int invicibleCounter = 0;
+    public String mobImgPath1, mobImgPath2;
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2; //BufferedImage describes an images with an accessible buffer of image data.
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down"; //decide which direction entity will face when spawn in the screen

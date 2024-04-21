@@ -8,6 +8,8 @@ public class KeyHandler implements KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     public boolean debugPressed = false; //debug mode add
+    public boolean pickUpPressed = false; // pick up object
+    public boolean attackPressed = false; //attack mob
 
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -99,6 +101,12 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER){
                 enterPressed = true;
+            }
+            if (code == KeyEvent.VK_E){
+                pickUpPressed = true;
+            }
+            if (code == KeyEvent.VK_SPACE){
+                attackPressed = true;
             }
             //debug handler
             if (code == KeyEvent.VK_1) {

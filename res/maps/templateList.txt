@@ -1,0 +1,19 @@
+--Mob--
+<order> <Name> <filePath1> <filePath2> <x> <y>
+
+order: 0,1,2,3...
+Name: Slime, Spider, Goblin
+filePath: entity/mob/<mobName>/<mobName>Idle_1/2.png, no uppercase
+
+eg: 
+0 Goblin entity/mob/goblin/goblinIdle_1.png entity/mob/goblin/goblinIdle_2.png 4 14 
+
+--Object--
+<order> <Name> <filePath> <x> <y>
+
+order: 0, 1, 2, ...
+Name: Chest, Sword, Shield, HpPotion, AttackPotion
+filePath: object/[category]/<objName>.png
+
+eg:
+0 Chest object/chest.png 93 9
