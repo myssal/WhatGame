@@ -2,6 +2,7 @@ package Entity;
 
 import Main.GamePanel;
 
+import java.awt.*;
 import java.util.Random;
 
 public class NPCSage extends Entity{
@@ -9,6 +10,7 @@ public class NPCSage extends Entity{
     public NPCSage(GamePanel gp){
         super(gp);
 
+        solidArea = new Rectangle(5, 5, 38, 43);
         direction = "down";
         speed = 1;
         getSageBImage();

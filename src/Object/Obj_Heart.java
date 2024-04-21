@@ -1,24 +1,21 @@
 package Object;
 
+import Entity.Entity;
 import Main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Obj_Heart extends ObjectTmp {
-    GamePanel gp;
+public class Obj_Heart extends Entity {
+
 
     public Obj_Heart(GamePanel gp){
 
-        this.gp = gp;
+        super(gp);
         name = "Heart";
-        try{
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("object/heart_full.png"));
-            imageVar1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("object/heart_half.png"));
-            imageVar2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("object/heart_blank.png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        };
-        collision = true;
+        image = setUp("object/heart_full");
+        imageVar1 = setUp("object/heart_half");
+        imageVar2 = setUp("object/heart_blank");
+
     }
 }

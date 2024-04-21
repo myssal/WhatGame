@@ -2,6 +2,7 @@ package Main;
 
 import Entity.NPCSage;
 import Entity.NPCSageE;
+import Object.Obj_HpPotion;
 
 public class AssetsManagement {
 
@@ -13,7 +14,9 @@ public class AssetsManagement {
 
     public void setObject(){
         //setup object in world map
-
+        gp.obj[0] = new Obj_HpPotion(gp);
+        gp.obj[0].worldX = gp.tileSize * 29;
+        gp.obj[0].worldY = gp.tileSize * 30;
 
     }
     public void setNPC(){

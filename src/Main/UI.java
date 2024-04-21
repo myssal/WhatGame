@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
+import Entity.Entity;
 import Object.Obj_Heart;
-import Object.ObjectTmp;
 
 import javax.imageio.ImageIO;
 
@@ -38,7 +38,7 @@ public class UI {
         }
 
         //hud object
-        ObjectTmp heart = new Obj_Heart(gp);
+        Entity heart = new Obj_Heart(gp);
         heartFull = heart.image;
         heartHalf = heart.imageVar1;
         heartBlank = heart.imageVar2;

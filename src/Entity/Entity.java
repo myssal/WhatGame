@@ -15,7 +15,7 @@ public class Entity {
     public int speed;
 
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2; //BufferedImage describes an images with an accessible buffer of image data.
-    public String direction; //decide which direction entity will face when spawn in the screen
+    public String direction = "down"; //decide which direction entity will face when spawn in the screen
 
     public int spriteCounter = 0; //variable to create a "loop" animation
     public int spriteNum = 1; //decide which sprite to use in "loop" animation
@@ -29,6 +29,11 @@ public class Entity {
     //character status
     public int maxHP;
     public int HP;
+
+    //move from ObjectTmp
+    public BufferedImage image, imageVar1, imageVar2;
+    public String name;
+    public boolean collision = true;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -146,7 +151,12 @@ public class Entity {
                     break;
             }
 
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            if (name == "Hp Potion"){
+                g2.drawImage(image, screenX + 5, screenY + 5, 20, 20, null);
+            }else {
+                g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            }
+
 
         }
     }
