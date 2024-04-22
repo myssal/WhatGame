@@ -6,8 +6,6 @@ import Object.*;
 import Mob.*;
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInput;
 import java.util.Scanner;
 
 public class AssetsManagement {
@@ -52,7 +50,12 @@ public class AssetsManagement {
     }
 
     public void setMob(){
-        try {
+        //test spawn
+        gp.mob[0] = new Mob_Template(gp);
+        gp.mob[0].name = "Slime";
+        gp.mob[0].worldX = 12;
+        gp.mob[0].worldY = 50;
+        /*try {
 
             int mobNum;
             Scanner mobInput = new Scanner(new File("res/maps/mobList.txt"));
@@ -65,6 +68,6 @@ public class AssetsManagement {
             }
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 }

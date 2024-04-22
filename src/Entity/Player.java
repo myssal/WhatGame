@@ -229,7 +229,7 @@ public class Player extends Entity{
                     }
                     case "AttackPotion":{
                         if (gp.keyH.pickUpPressed){
-                            gp.ui.currentDialogue = "A small boost to your object";
+                            gp.ui.currentDialogue = "A small boost to your attack";
                             //one more thing that haven't got implemented yet lol
                             gp.gameState = gp.dialogueState;
                             gp.ui.drawDialogueWindow();
