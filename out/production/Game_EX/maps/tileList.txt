@@ -12,7 +12,7 @@
 21 tileMap/grass5.png true
 22 tileMap/rock3.png true
 23 tileMap/rock4.png true
-24 tileMap/spike.png true
+24 tileMap/spike.png false
 25 tileMap/tree.png true
 26 tileMap/water.png true
 27 tileMap/water1.png true

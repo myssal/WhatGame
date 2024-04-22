@@ -44,11 +44,13 @@ public class EventHandler {
         }
 
         if (canTouchEvent){
-            //template
-            /*
-            if (hit(11, 48, "any")){
-                damagePit(11, 48, gp.dialogueState);
-            }*/
+            if (hit(36, 48, "any")) teleport(gp.dialogueState);
+            if (hit(90, 39, "any")) damagePit(gp.dialogueState);
+            if (hit(91, 33, "any")) damagePit(gp.dialogueState);
+            if (hit(92, 41, "any")) damagePit(gp.dialogueState);
+            if (hit(102, 40, "any")) damagePit(gp.dialogueState);
+            if (hit(103, 37, "any")) damagePit(gp.dialogueState);
+            if (hit(102, 34, "any")) damagePit(gp.dialogueState);
         }
 
     }
@@ -81,16 +83,16 @@ public class EventHandler {
         return hit;
     }
 
-    public void damagePit(int col, int row, int gameState){
+    public void damagePit(int gameState){
 
         gp.gameState = gameState;
-        gp.ui.currentDialogue = "Fool ass";
+        gp.ui.currentDialogue = "You got hit";
         gp.player.HP -= 1;
         //eventRect[col][row].eventDone = true;
         canTouchEvent = false;
     }
 
-    public void healing(int col, int row, int gameState){
+    public void healing(int gameState){
 
         if(gp.keyH.enterPressed){
             gp.gameState = gameState;
@@ -99,5 +101,15 @@ public class EventHandler {
         }
 
         gp.keyH.enterPressed = false;
+    }
+
+    public void teleport(int gameState){
+
+        gp.gameState = gameState;
+        gp.ui.currentDialogue = "Teleported!";
+        gp.player.worldX = 64 * gp.tileSize;
+        gp.player.worldY = 39 * gp.tileSize;
+        //eventRect[col][row].eventDone = true;
+        canTouchEvent = false;
     }
 }

@@ -20,3 +20,4 @@
 19 Chest object/chest.png 90 10
 20 Chest object/chest.png 91 10
 21 Chest object/chest.png 92 10
+22 TeleportPole object/teleportPole.png 36 48

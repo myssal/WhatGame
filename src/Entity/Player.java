@@ -17,7 +17,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-
+    public int chestCount = 0;
     //constructor
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -178,8 +178,9 @@ public class Player extends Entity{
                             gp.ui.currentDialogue = "You got a treasure chest!";
                             gp.gameState = gp.dialogueState;
                             gp.ui.drawDialogueWindow();
+                            chestCount++;
                             if (gp.keyH.enterPressed){
-                                gp.gameState = gp.playState;
+                                    gp.gameState = gp.playState;
                             }
                             gp.obj[index] = null;
 
@@ -238,6 +239,12 @@ public class Player extends Entity{
                             }
                             gp.obj[index] = null;
 
+                        }
+                        break;
+                    }
+                    case "TeleportPole":{
+                        if (gp.keyH.pickUpPressed){
+                            gp.obj[index] = null;
                         }
                         break;
                     }
