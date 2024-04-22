@@ -22,7 +22,6 @@ public class AssetsManagement {
         try {
 
             int objNum;
-            String pathName = "";
             Scanner objectInput = new Scanner(new File("res/maps/objectList.txt"));
             while (objectInput.hasNext()){
                 objNum = objectInput.nextInt();
@@ -50,24 +49,23 @@ public class AssetsManagement {
     }
 
     public void setMob(){
-        //test spawn
-        gp.mob[0] = new Mob_Template(gp);
+        /*test spawn
+        gp.mob[0] = new Mob_Slime(gp);
         gp.mob[0].name = "Slime";
         gp.mob[0].worldX = 12;
-        gp.mob[0].worldY = 50;
-        /*try {
+        gp.mob[0].worldY = 48;*/
+        try {
 
             int mobNum;
             Scanner mobInput = new Scanner(new File("res/maps/mobList.txt"));
             while (mobInput.hasNext()){
                 mobNum = mobInput.nextInt();
                 gp.mob[mobNum] = new Mob_Template(gp);
-                gp.mob[mobNum].name = mobInput.next();
                 gp.mob[mobNum].worldX = mobInput.nextInt() * gp.tileSize;
                 gp.mob[mobNum].worldY = mobInput.nextInt() * gp.tileSize;
             }
         }catch (Exception e){
             e.printStackTrace();
-        }*/
+        }
     }
 }

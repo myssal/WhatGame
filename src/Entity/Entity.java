@@ -45,10 +45,7 @@ public class Entity {
 
     //render image
     public BufferedImage setUp(String imagePath){
-
-        Utility util = new Utility();
         BufferedImage scaledImage = null;
-
         try {
             scaledImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imagePath+".png"));
         }catch (IOException e){

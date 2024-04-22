@@ -78,14 +78,30 @@ public class UI {
 
     public void drawPauseScreen(){
 
-        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 80));
-        Color pause = new Color(44, 44, 44, 239);
+        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 50));
+        Color pause = new Color(91, 91, 91, 229);
         graph2.setColor(pause);
-        String gameState = "PAUSE";
-        int x = getXCenteredText(gameState, graph2);
-        int y = gp.screenHeight / 2;
+        String option1 = "Pause";
+        String option2 = "Return to title screen";
+        String option3 = "Exit";
+        //render text and shadow
 
-        graph2.drawString(gameState, x, y);
+        graph2.drawString(option1, getXCenteredText(option1, graph2), gp.tileSize * 5);
+        graph2.drawString(option2, getXCenteredText(option2, graph2), gp.tileSize * 7 );
+        graph2.drawString(option3, getXCenteredText(option3, graph2), gp.tileSize * 9);
+        //change command
+        if (commandNum == 0){
+            graph2.drawString(">", getXCenteredText(option1, graph2) - gp.tileSize, gp.tileSize * 5 + 4);
+        }
+        if (commandNum == 1){
+            graph2.drawString(">", getXCenteredText(option2, graph2) - gp.tileSize, gp.tileSize * 7 + 4);
+        }
+        if (commandNum == 2){
+            graph2.drawString(">", getXCenteredText(option3, graph2) - gp.tileSize, gp.tileSize * 9 + 4);
+        }
+
+
+
     }
     //title screen
     public void drawTitleScreen(){

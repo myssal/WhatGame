@@ -45,7 +45,7 @@ public class Test {
             System.out.println(i.tileOrder+i.tileName);
         }
 
-*/      int ObjectNum, ObjectX, ObjectY;
+     int ObjectNum, ObjectX, ObjectY;
         String ObjectName;
         Entity[] obj = new Entity[30];
         String test;
@@ -60,6 +60,22 @@ public class Test {
 
             }
         }catch (Exception e){}
+
+*/
+        try {
+            Scanner ob = new Scanner(new File("res/maps/mobList.txt"));
+            int a, b,c;
+            String d;
+            while (ob.hasNext()){
+                a = ob.nextInt();
+                d = ob.next();
+                b = ob.nextInt();
+                c = ob.nextInt();
+                System.out.println(a+" "+b+" "+c+" "+d);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 }

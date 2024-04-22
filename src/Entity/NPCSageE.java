@@ -41,7 +41,7 @@ public class NPCSageE extends Entity{
         gp.collisionChecker.checkPlayer(this);
 
         spriteCounter++;
-        if (spriteCounter>30) {
+        if (spriteCounter>120) {
             if (spriteNum == 1) {
 
                 spriteNum = 2;
