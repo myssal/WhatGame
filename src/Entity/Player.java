@@ -27,7 +27,7 @@ public class Player extends Entity{
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         //setting the collision area
-        solidArea = new Rectangle(8, 0, 32, 48);
+        solidArea = new Rectangle(8, 0, 32, 35);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -43,11 +43,11 @@ public class Player extends Entity{
 
         worldX = gp.tileSize*8;
         worldY = gp.tileSize*48;
-        speed = 7;
+        speed = 4;
         direction = "right";
 
         //status
-        maxHP = 6;
+        maxHP = 8;
         HP = maxHP ;
 
     }

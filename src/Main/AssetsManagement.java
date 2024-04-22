@@ -53,7 +53,7 @@ public class AssetsManagement {
         gp.mob[0] = new Mob_Slime(gp);
         gp.mob[0].name = "Slime";
         gp.mob[0].worldX = 12;
-        gp.mob[0].worldY = 48;*/
+        gp.mob[0].worldY = 48;
         try {
 
             int mobNum;
@@ -66,6 +66,6 @@ public class AssetsManagement {
             }
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 }
