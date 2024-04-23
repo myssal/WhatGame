@@ -87,7 +87,6 @@ public class UI {
     }
 
     public void drawGameOver(){
-
         //window setting
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 2;
@@ -126,7 +125,7 @@ public class UI {
 
 
     public void drawVictoryScreen(){
-
+        gp.playSoundEffect(8);
         //window setting
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 2;

@@ -171,6 +171,8 @@ public class KeyHandler implements KeyListener {
         //victory and game over state
         else if (gp.gameState == gp.victoryState || gp.gameState == gp.failState){
             //switch between option
+            if (gp.gameState == gp.victoryState) gp.playSoundEffect(8);
+            else if (gp.gameState == gp.failState) gp.playSoundEffect(3);
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0){

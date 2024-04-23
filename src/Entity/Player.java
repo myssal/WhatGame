@@ -187,6 +187,7 @@ public class Player extends Entity{
                 switch (gp.obj[index].name){
                     case "Chest":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(4);
                             gp.ui.currentDialogue = "You got a treasure chest!";
                             gp.gameState = gp.dialogueState;
                             gp.ui.drawDialogueWindow();
@@ -198,6 +199,7 @@ public class Player extends Entity{
                     }
                     case "Sword":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(4);
                             gp.ui.currentDialogue = "You got a sword! Now you can attack the monster.";
                             gp.gameState = gp.dialogueState;
                             gp.ui.drawDialogueWindow();
@@ -211,6 +213,7 @@ public class Player extends Entity{
                     }
                     case "Shield":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(4);
                             gp.ui.currentDialogue = "A shield to help increase your defense";
                             //actually haven't implemented yet lol
                             gp.gameState = gp.dialogueState;
@@ -225,6 +228,7 @@ public class Player extends Entity{
                     }
                     case "HpPotion":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(1);
                             gp.ui.currentDialogue = "You healed 1 HP!";
                             HP += 1;
                             gp.gameState = gp.dialogueState;
@@ -239,6 +243,7 @@ public class Player extends Entity{
                     }
                     case "AttackPotion":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(1);
                             gp.ui.currentDialogue = "A small boost to your attack";
                             //one more thing that haven't got implemented yet lol
                             gp.gameState = gp.dialogueState;
@@ -253,6 +258,7 @@ public class Player extends Entity{
                     }
                     case "TeleportPole":{
                         if (gp.keyH.pickUpPressed){
+                            gp.playSoundEffect(4);
                             gp.obj[index] = null;
                         }
                         break;
@@ -286,6 +292,7 @@ public class Player extends Entity{
         if (mobIndex != 999){
 
             if (invicible == false){
+                gp.playSoundEffect(6);
                 HP -= 1;
                 invicible = true;
             }
@@ -316,10 +323,11 @@ public class Player extends Entity{
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
 
+
             //check mob collision
             int mobIndex = gp.collisionChecker.checkEntity(this, gp.mob);
             damageMonster(mobIndex);
-
+            if (!collisonOn) gp.playSoundEffect(7);
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -335,6 +343,7 @@ public class Player extends Entity{
     void damageMonster(int mobIndex){
         if (mobIndex != 999){
             if (!gp.mob[mobIndex].invicible){
+                gp.playSoundEffect(5);
                 gp.mob[mobIndex].HP -= 1;
                 gp.mob[mobIndex].invicible = true;
 

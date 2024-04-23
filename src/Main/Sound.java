@@ -3,7 +3,10 @@ package Main;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Scanner;
 
 public class Sound {
 
@@ -11,9 +14,17 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getClassLoader().getResource("sound/bgmTheme.wav");
-        soundURL[1] = getClass().getClassLoader().getResource("sound/coin.wav");
-        soundURL[2] = getClass().getClassLoader().getResource("sound/cursor.wav");
+        try {
+            Scanner soundInput = new Scanner(new File("res/maps/soundList.txt"));
+            int sfxOrder;
+            while (soundInput.hasNext()){
+                sfxOrder = soundInput.nextInt();
+                soundURL[sfxOrder] = getClass().getClassLoader().getResource(soundInput.next());
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     public void setFile(int i){

@@ -49,11 +49,6 @@ public class AssetsManagement {
     }
 
     public void setMob(){
-        /*test spawn
-        gp.mob[0] = new Mob_Slime(gp);
-        gp.mob[0].name = "Slime";
-        gp.mob[0].worldX = 12;
-        gp.mob[0].worldY = 48;*/
         try {
 
             int mobNum;

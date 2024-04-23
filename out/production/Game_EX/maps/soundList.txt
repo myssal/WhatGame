@@ -1,0 +1,9 @@
+0 sound/bgmTheme.wav
+1 sound/boost.wav
+2 sound/cursor.wav
+3 sound/gameOver.wav
+4 sound/getItem.wav
+5 sound/hitMob.wav
+6 sound/receiveDamage.wav
+7 sound/swingWeapon.wav
+8 sound/victory.wav
