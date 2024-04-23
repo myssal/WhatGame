@@ -1,7 +1,6 @@
 package Entity;
 
 import Main.GamePanel;
-import Main.Utility;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

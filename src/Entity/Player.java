@@ -2,15 +2,9 @@ package Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Main.Utility;
 
 public class Player extends Entity{
 

@@ -1,9 +1,9 @@
-package Main;
+package QoL;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Utility {
+public class ScaleEntity {
 
     //method to improve render performance by pre-scaled sprite before load into draw method
     public BufferedImage scaleImage(BufferedImage original, int width, int height){
