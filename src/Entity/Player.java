@@ -17,7 +17,6 @@ public class Player extends Entity{
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int chestCount = 0;
     //constructor
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -40,14 +39,14 @@ public class Player extends Entity{
     }
     //set default Player position
     public void setDefaultValue(){
-
-        worldX = gp.tileSize*8;
-        worldY = gp.tileSize*48;
+        //8,48: default spawn location
+        worldX = gp.tileSize*96;
+        worldY = gp.tileSize*12;
         speed = 4;
         direction = "right";
 
         //status
-        maxHP = 8;
+        maxHP = 10;
         HP = maxHP ;
 
     }
@@ -157,6 +156,12 @@ public class Player extends Entity{
             }
         }
 
+        if (chestCount >= 6){
+            gp.gameState = gp.victoryState;
+        }
+        if (HP <= 0){
+            gp.gameState = gp.failState;
+        }
         //set time invicible
         if (invicible){
             invicibleCounter++;
@@ -167,6 +172,13 @@ public class Player extends Entity{
         }
     }
 
+    public void reset(){
+        worldX = gp.tileSize * 8;
+        worldY = gp.tileSize * 48;
+        direction = "right";
+        HP = maxHP;
+        invicible = false;
+    }
     public void pickUpObject(int index){
         //set up interaction with object
         if (gp.keyH.pickUpPressed){
@@ -179,9 +191,6 @@ public class Player extends Entity{
                             gp.gameState = gp.dialogueState;
                             gp.ui.drawDialogueWindow();
                             chestCount++;
-                            if (gp.keyH.enterPressed){
-                                    gp.gameState = gp.playState;
-                            }
                             gp.obj[index] = null;
 
                         }
@@ -325,12 +334,15 @@ public class Player extends Entity{
 
     void damageMonster(int mobIndex){
         if (mobIndex != 999){
-            gp.mob[mobIndex].HP -= 1;
-            gp.mob[mobIndex].invicible = true;
+            if (!gp.mob[mobIndex].invicible){
+                gp.mob[mobIndex].HP -= 1;
+                gp.mob[mobIndex].invicible = true;
 
-            if (gp.mob[mobIndex].HP < 0){
-                //mob die
-                gp.mob[mobIndex] = null;
+                if (gp.mob[mobIndex].HP < 0){
+                    //mob die
+                    mobDefeated ++;
+                    gp.mob[mobIndex] = null;
+                }
             }
         }
     }
@@ -394,6 +406,7 @@ public class Player extends Entity{
             //change opacity of player sprite
             graph2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
         }
+
         //optimize later
         if (image == attackDown1 || image == attackDown2 || image == attackUp1 || image == attackUp2){
             graph2.drawImage(image, screenX, screenY, gp.tileSize * 2, gp.tileSize, null);

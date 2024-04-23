@@ -7,6 +7,7 @@ public class KeyHandler implements KeyListener {
 
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean soundStatus = true;
     public boolean debugPressed = false; //debug mode add
     public boolean pickUpPressed = false; // pick up object
     public boolean attackPressed = false; //attack mob
@@ -47,6 +48,16 @@ public class KeyHandler implements KeyListener {
                         gp.ui.titleScreenState = 1;
                         gp.ui.commandNum = 0;
                     }
+                    if (gp.ui.commandNum == 1){
+                        if (soundStatus){
+                            gp.stopMusic();
+                            soundStatus = false;
+                        }else {
+                            gp.playMusic(0);
+                            soundStatus = true;
+                        }
+
+                    }
                     if (gp.ui.commandNum == 2){
                         System.exit(0);
                     }
@@ -76,6 +87,7 @@ public class KeyHandler implements KeyListener {
                     if (gp.ui.commandNum == 1){
                         //move to game
                         gp.gameState = gp.playState;
+                        gp.ui.commandNum = 0;
                     }
                 }
             }
@@ -153,6 +165,32 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.dialogueState){
             if (code == KeyEvent.VK_ENTER){
                 gp.gameState = gp.playState;
+            }
+        }
+
+        //victory and game over state
+        else if (gp.gameState == gp.victoryState || gp.gameState == gp.failState){
+            //switch between option
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0){
+                    gp.ui.commandNum = 1;
+                }
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 1){
+                    gp.ui.commandNum = 0;
+
+                }
+            }
+            if (code == KeyEvent.VK_ENTER){
+                if (gp.ui.commandNum == 0){
+                    gp.player.reset();
+                    gp.gameState = gp.titleState;
+                    gp.ui.titleScreenState = 0;
+                }
+                if (gp.ui.commandNum == 1) System.exit(0);
             }
         }
     }

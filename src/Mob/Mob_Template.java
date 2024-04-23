@@ -50,19 +50,19 @@ public class Mob_Template extends Entity {
         switch (name){
             case "Slime": {
                 speed = 1;
-                maxHP = 4;
+                maxHP = 2;
                 HP = maxHP;
                 break;
             }
             case "Goblin": {
-                speed = 2;
-                maxHP = 5;
+                speed = 1;
+                maxHP = 3;
                 HP = maxHP;
                 break;
             }
             case "Spider": {
                 speed = 2;
-                maxHP = 4;
+                maxHP = 3;
                 HP = maxHP;
                 break;
             }

@@ -11,7 +11,7 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getClassLoader().getResource("sound/BlueBoyAdventure.wav");
+        soundURL[0] = getClass().getClassLoader().getResource("sound/bgmTheme.wav");
         soundURL[1] = getClass().getClassLoader().getResource("sound/coin.wav");
         soundURL[2] = getClass().getClassLoader().getResource("sound/cursor.wav");
     }

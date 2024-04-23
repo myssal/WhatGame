@@ -74,14 +74,101 @@ public class UI {
             drawPauseScreen();
         }
 
+        //victory state
+        if (gp.gameState == gp.victoryState){
+            drawVictoryScreen();
+        }
+
+        //game over
+        if (gp.gameState == gp.failState){
+            drawGameOver();
+        }
+
+    }
+
+    public void drawGameOver(){
+
+        //window setting
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize * 2;
+        int width = gp.screenWidth - gp.tileSize * 4;
+        int height = gp.tileSize * 7;
+        drawSubWindow(x, y, width, height);
+
+        //draw dialogue
+        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 70));
+        Color victory = new Color(255, 255, 255, 255);
+        graph2.setColor(victory);
+        x = getXCenteredText("GAME OVER", graph2);
+        y += gp.tileSize * 2;
+        graph2.drawString("GAME OVER", x, y);
+        graph2.setFont(graph2.getFont().deriveFont(Font.PLAIN, 40));
+        String achieve1 = "Chest obtanied: "+ gp.player.chestCount;
+        x = getXCenteredText(achieve1, graph2);
+        y += gp.tileSize;
+        graph2.drawString(achieve1, x, y);
+        String achieve2 = "Moster slained: "+gp.player.mobDefeated;
+        x = getXCenteredText(achieve2, graph2);
+        y += gp.tileSize;
+        graph2.drawString(achieve2, x, y);
+        //option
+        String option1 = "Return to Title Screen";
+        String option2 = "Exit";
+        graph2.drawString(option1, getXCenteredText(option1, graph2), y + gp.tileSize);
+        graph2.drawString(option2, getXCenteredText(option2, graph2), y + gp.tileSize * 2 );
+        if (commandNum == 0){
+            graph2.drawString(">", getXCenteredText(option1, graph2) - gp.tileSize, y + gp.tileSize + 5);
+        }
+        if (commandNum == 1){
+            graph2.drawString(">", getXCenteredText(option2, graph2) - gp.tileSize, y + gp.tileSize * 2 + 5);
+        }
+    };
+
+
+    public void drawVictoryScreen(){
+
+        //window setting
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize * 2;
+        int width = gp.screenWidth - gp.tileSize * 4;
+        int height = gp.tileSize * 7;
+        drawSubWindow(x, y, width, height);
+
+        //draw dialogue
+        graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 70));
+        Color victory = new Color(255, 255, 255, 255);
+        graph2.setColor(victory);
+        x = getXCenteredText("VICTORY", graph2);
+        y += gp.tileSize * 2;
+        graph2.drawString("VICTORY", x, y);
+        graph2.setFont(graph2.getFont().deriveFont(Font.PLAIN, 40));
+        String achieve1 = "Chest obtanied: "+ gp.player.chestCount;
+        x = getXCenteredText(achieve1, graph2);
+        y += gp.tileSize;
+        graph2.drawString(achieve1, x, y);
+        String achieve2 = "Moster slained: "+gp.player.mobDefeated;
+        x = getXCenteredText(achieve2, graph2);
+        y += gp.tileSize;
+        graph2.drawString(achieve2, x, y);
+        //option
+        String option1 = "Return to title screen";
+        String option2 = "Exit";
+        graph2.drawString(option1, getXCenteredText(option1, graph2), y + gp.tileSize);
+        graph2.drawString(option2, getXCenteredText(option2, graph2), y + gp.tileSize * 2 );
+        if (commandNum == 0){
+            graph2.drawString(">", getXCenteredText(option1, graph2) - gp.tileSize, y + gp.tileSize + 5);
+        }
+        if (commandNum == 1){
+            graph2.drawString(">", getXCenteredText(option2, graph2) - gp.tileSize, y + gp.tileSize * 2 + 5);
+        }
+
     }
 
     public void drawPauseScreen(){
-
+        Color pause = new Color(255, 255, 255, 255);
         graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 50));
-        Color pause = new Color(91, 91, 91, 229);
         graph2.setColor(pause);
-        String option1 = "Pause";
+        String option1 = "Resume";
         String option2 = "Return to title screen";
         String option3 = "Exit";
         //render text and shadow
@@ -133,7 +220,7 @@ public class UI {
 
             //menu
             graph2.setFont(graph2.getFont().deriveFont(Font.BOLD, 40F));
-            String[] menuOption = new String[]{"NEW GAME", "LOAD GAME", "QUIT"};
+            String[] menuOption = new String[]{"NEW GAME", "TURN ON/OFF SOUND", "QUIT"};
             for (int menuIt = 0; menuIt < menuOption.length; menuIt++){
 
                 x = getXCenteredText(menuOption[menuIt], graph2);

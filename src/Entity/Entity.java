@@ -27,6 +27,8 @@ public class Entity {
     public boolean collisonOn = false;
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
+    public int chestCount = 0;
+    public int mobDefeated = 0;
     int dialogueIndex = 0;
     boolean attacking = false;
 
@@ -113,7 +115,7 @@ public class Entity {
         //set time invicible
         if (invicible){
             invicibleCounter++;
-            if (invicibleCounter > 30){
+            if (invicibleCounter > 20){
                 invicible = false;
                 invicibleCounter = 0;
             }

@@ -233,7 +233,7 @@ public class CollisionChecker {
 Collision detection idea:
 
     -Detect coordinates of 4 corners of the hit box
-    -Get rol/col number of the the corner.
+    -Get rol/col number of the corner.
     -Use switch case to handle each direction. For each direction, check if
     the two corners facing that direction is collision with existing tile.
     If yes, collision is on hence prevent entity from moving.
