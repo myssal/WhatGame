@@ -74,7 +74,7 @@ public class ConvertMap {
     }
     public void readMap(){
         try {
-            
+
             BufferedImage map = ImageIO.read(getClass().getClassLoader().getResourceAsStream("maps/testSpawn.png"));
             //create a subImage to convert each tiles
             BufferedImage tileSub;

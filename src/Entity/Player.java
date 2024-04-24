@@ -34,8 +34,8 @@ public class Player extends Entity{
     //set default Player position
     public void setDefaultValue(){
         //8,48: default spawn location
-        worldX = gp.tileSize*96;
-        worldY = gp.tileSize*12;
+        worldX = gp.tileSize * 8;
+        worldY = gp.tileSize * 48;
         speed = 4;
         direction = "right";
 

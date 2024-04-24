@@ -24,6 +24,7 @@ public class UI {
     public String currentDialogue = "";
     Font maruMonica;
     BufferedImage heartFull, heartHalf, heartBlank;
+    public int counter = 0; //victory and game over sfx played counter
     public int commandNum = 0; //title screen choice
     public int titleScreenState = 0;//load different title screen
 
@@ -125,7 +126,6 @@ public class UI {
 
 
     public void drawVictoryScreen(){
-        gp.playSoundEffect(8);
         //window setting
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 2;
